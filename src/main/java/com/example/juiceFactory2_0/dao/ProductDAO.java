@@ -5,6 +5,7 @@ import com.example.juiceFactory2_0.entity.Product;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {

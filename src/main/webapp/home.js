@@ -1,35 +1,34 @@
 function loadProductList() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            let medicineDataList = JSON.parse(this.responseText);
-            let medicineList = ' <ul class="w3-ul w3-card-4"> ';
+        if (this.readyState == 4 && this.status == 200) {
+            let productDataList = JSON.parse(this.responseText);
+            let productList = ' <ul class="w3-ul w3-card-4"> ';
 
-            medicineDataList.reverse();
+            productDataList.reverse();
 
-            for (let index = 0; index < medicineDataList.length; index++) {
-                medicineList +=
+            for (let index = 0; index < productDataList.length; index++) {
+                productList +=
                     ' <li class="w3-bar"> ' +
 
-                    ' <button id= ' + medicineDataList[index].id + ' onclick="editMedicine(this.id)" ' +
+                    ' <button id= ' + productDataList[index].id + ' onclick="editMedicine(this.id)" ' +
                     ' class="w3-bar-item w3-button w3-small w3-right">Edit</button> ' +
 
-                    ' <button id=' + medicineDataList[index].id + ' onclick="removeMedicine(this.id)" ' +
+                    ' <button id=' + productDataList[index].id + ' onclick="removeMedicine(this.id)" ' +
                     ' class="w3-bar-item w3-button w3-small w3-right">Remove</button> ' +
 
 
-                    ' <img src="https://png.pngtree.com/element_our/20200610/ourlarge/pngtree-medical-capsule-medicine-image_2242252.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> ' +
                     ' <div class="w3-bar-item"> ' +
-                    ' <span class="w3-large"> Name: ' +  medicineDataList[index].name  + ' </span><br> ' +
-                    ' <span> Brand: ' +  medicineDataList[index].brand  + ' </span> <br>' +
-                    ' <span> Description: ' +  medicineDataList[index].description  + ' </span> <br>' +
-                    ' <span> Stock: ' +  medicineDataList[index].stock  + ' </span> <br> ' +
+                    ' <span class="w3-large"> Name: ' +  productDataList[index].name  + ' </span><br> ' +
+                    ' <span> Brand: ' +  productDataList[index].brand  + ' </span> <br>' +
+                    ' <span> Description: ' +  productDataList[index].description  + ' </span> <br>' +
+                    ' <span> Stock: ' +  productDataList[index].stock  + ' </span> <br> ' +
                     ' </div> ';
             }
-            medicineList += "</ul>";
-            document.getElementById("medicineData").innerHTML = medicineList;
+            productList += "</ul>";
+            document.getElementById("productData").innerHTML = productList;
         }
     };
-    xhttp.open("GET", "/healthcentremanagement-front-end/api/product/list", true);
+    xhttp.open("GET", "/juiceFactory2_0/api/product/list", true);
     xhttp.send();
 }

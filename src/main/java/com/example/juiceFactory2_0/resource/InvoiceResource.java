@@ -3,9 +3,11 @@ package com.example.juiceFactory2_0.resource;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.InvoiceDAO;
 import com.example.juiceFactory2_0.entity.Invoice;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+//import jakarta.ws.rs.*;
+//import jakarta.ws.rs.core.MediaType;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/invoice")

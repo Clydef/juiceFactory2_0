@@ -1,9 +1,13 @@
 package com.example.juiceFactory2_0.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+@JsonIgnoreProperties("orderProducts")
 @Entity
 public class Product {
 
@@ -40,6 +44,12 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public Product(Long id, String productName, String productDescription) {
+        this.id = id;
+        this.productName = productName;
+        this.productDescription = productDescription;
     }
 
     public Long getId() {

@@ -3,8 +3,13 @@ package com.example.juiceFactory2_0.resource;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.OrderProductDAO;
 import com.example.juiceFactory2_0.entity.OrderProducts;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+//import jakarta.ws.rs.*;
+//import jakarta.ws.rs.core.MediaType;
 
 
 @Path("orderProduct")
