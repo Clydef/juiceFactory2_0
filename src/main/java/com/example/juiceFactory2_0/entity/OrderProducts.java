@@ -1,7 +1,10 @@
 package com.example.juiceFactory2_0.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
+@JsonIgnoreProperties({"order","product"})
 @Entity
 @Table(name = "order_products")
 public class OrderProducts {
