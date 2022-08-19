@@ -25,6 +25,7 @@ public class CustomerResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Customer add(Customer customer) {
+        System.out.println(customer);
         return customerDAO.insert(customer);
     }
 
