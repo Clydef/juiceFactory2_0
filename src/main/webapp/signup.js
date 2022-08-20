@@ -1,6 +1,6 @@
 let customer;
 let isRetrieved = false;
-let customerCount = 700;
+let customerCount = 705;
 
 function validateForm() {
     let pass = true;
@@ -8,7 +8,6 @@ function validateForm() {
     let district = document.getElementById("district").value;
     let address = document.getElementById("address").value;
     let phoneNumber = document.getElementById("phoneNumber").value;
-    // let customerNumber = document.getElementById("customerNumber").value;
 
     if (district == null || district == "",
     address == null || address == "",

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>My Customers</title>
+</head>
+<body>
+<div class="w3-container w3-half w3-margin-top">
+
+    <p>
+        <input id="customerId" class="w3-input" type="hidden" style="width:90%">
+    </p>
+
+    <p>
+        <input id="customerNumber" class="w3-input" type="hidden" style="width:90%">
+    </p>
+
+    <p>
+        <input id="name" class="w3-input" type="text" style="width:90%" required>
+        <label>Name</label></p>
+    <p>
+
+    <p>
+        <input id="address" class="w3-input" type="text" style="width:90%" required>
+        <label>Address</label></p>
+    <p>
+        <input id="district" class="w3-input" type="text" style="width:90%" required>
+        <label>District</label></p>
+    <p>
+
+    <p>
+        <input id="phoneNumber" class="w3-input" type="text" style="width:90%" required>
+        <label>Phone Number</label></p>
+    <p>
+        <button id="btnSaveCustomer" onclick="saveCustomer()" class="w3-button w3-section w3-teal w3-ripple">
+            Add Customer
+        </button>
+    </p>
+
+</div>
+
+<div id="customerData" class="w3-container">
+
+</div>
+<script src="./myCustomers.js"></script>
+</body>
+</html>

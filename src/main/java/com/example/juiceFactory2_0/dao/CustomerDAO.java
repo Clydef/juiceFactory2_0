@@ -23,7 +23,7 @@ public class CustomerDAO {
         return customerList;
     }
 
-    public Customer findByCustomerNumber(Long customerNumber) {
+    public Customer findByCustomerNumber(Object customerNumber) {
         entityManager.getTransaction().begin();
         String jpql = "select c from Customer c  where c.customerNumber = :customerNumber";
         TypedQuery<Customer> query = entityManager.createQuery(jpql, Customer.class);
@@ -41,9 +41,13 @@ public class CustomerDAO {
 
     public int updateCustomer(Customer customer) {
         entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("UPDATE Customer c SET c.address = :address where c.customerNumber = :customerNumber");
+        Query query = entityManager.createQuery("UPDATE Customer c SET c.address = :address, c.name = :name," +
+                "c.district = :district, c.phoneNumber = :phoneNumber where c.customerNumber = :customerNumber");
         query.setParameter("customerNumber", customer.getCustomerNumber());
         query.setParameter("address", customer.getAddress());
+        query.setParameter("name", customer.getName());
+        query.setParameter("district", customer.getDistrict());
+        query.setParameter("phoneNumber", customer.getPhoneNumber());
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();

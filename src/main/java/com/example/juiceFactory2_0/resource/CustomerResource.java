@@ -47,7 +47,7 @@ public class CustomerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer getBook(Long customerNumber) {
+    public Customer getBook(Object customerNumber) {
         return customerDAO.findByCustomerNumber(customerNumber);
     }
 
