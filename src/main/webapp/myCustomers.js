@@ -38,17 +38,6 @@ function loadCustomerList() {
     xhttp.send();
 }
 
-// function addBook() {
-//     let book = {  "id" : null, "name" : document.getElementById("name").value, "author" : document.getElementById("author").value, "isbn" : document.getElementById("isbn").value }
-//     var xmlhttp = new XMLHttpRequest();
-//     xmlhttp.open("POST", "/restwithjersey/api/book/add", true);
-//     xmlhttp.onreadystatechange = function() {
-//         if (xmlhttp.readyState>3 && xmlhttp.status==200) { loadCustomerList(); clearInputFields();}
-//     };
-//     xmlhttp.setRequestHeader("Content-Type", "application/json");
-//     xmlhttp.send(JSON.stringify(book));
-// }
-
 function updateCustomer()
 {
     let customer = {  "customerNumber" : document.getElementById("customerNumber").value, "name" : document.getElementById("name").value,
@@ -57,11 +46,11 @@ function updateCustomer()
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", "/juiceFactory2_0/api/customer/update", true);
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState>3 && xmlhttp.status==200) { /*loadCustomerList();*/ clearInputFields(); document.getElementById("btnSaveCustomer").innerHTML = "Add Customer";}
+        if (xmlhttp.readyState>3 && xmlhttp.status==200) { loadCustomerList(); clearInputFields(); document.getElementById("btnSaveCustomer").innerHTML = "Add Customer";}
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(customer));
-    loadCustomerList();
+    // loadCustomerList();
 }
 
 function clearInputFields()
@@ -71,7 +60,8 @@ function clearInputFields()
     document.getElementById("address").value = "";
     document.getElementById("district").value = "";
     document.getElementById("phoneNumber").value = "";
-    document.getElementById("btnSaveCustomer").innerHTML = "Add Customer";
+
+    // document.getElementById("btnSaveCustomer").innerHTML = "Add Customer";
 }
 
 function removeCustomer(customerNumber)
@@ -83,9 +73,6 @@ function removeCustomer(customerNumber)
 
 function deleteCustomer(customerNumber)
 {
-    let customer = {  "customerNumber" : customerNumber, "name" : document.getElementById("name").value,
-        "address" : document.getElementById("address").value, "district" : document.getElementById("district").value,
-        "phoneNumber" : document.getElementById("phoneNumber").value }
     var xhttp = new XMLHttpRequest();
     xhttp.open("DELETE", "/juiceFactory2_0/api/customer/remove", true);
     xhttp.onreadystatechange = function() {
@@ -93,36 +80,6 @@ function deleteCustomer(customerNumber)
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(customerNumber));
-    console.log(JSON.stringify(customerNumber))
-}
-
-function getCustomer(customerNumber)
-{
-    // let customer = { "customerNumber" : customerNumber, "name" : document.getElementById("name").value,
-    //     "address" : document.getElementById("address").value, "district" : document.getElementById("district").value,
-    //     "phoneNumber" : document.getElementById("phoneNumber").value}
-    // console.log(customerNumber);
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-
-        if (xhttp.readyState>3 && xhttp.status==200) {
-            let foundCustomer = JSON.parse(this.responseText);
-
-            document.getElementById("customerNumber").value = foundCustomer.customerNumber;
-            document.getElementById("name").value = foundCustomer.name;
-            document.getElementById("address").value = foundCustomer.address;
-            document.getElementById("district").value = foundCustomer.district;
-            document.getElementById("phoneNumber").value = foundCustomer.phoneNumber;
-
-            document.getElementById("btnSaveCustomer").innerHTML = "Update Customer";
-
-            // console.log(foundCustomer.name + ' ' + foundCustomer.customerNumber);
-        }
-    };
-    xhttp.open("POST", "/juiceFactory2_0/api/customer/getCustomer", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(customer));
 }
 
 function editCustomer(customerNumber)
@@ -138,7 +95,6 @@ function editCustomer(customerNumber)
             document.getElementById("phoneNumber").value = customerNumberElement.phoneNumber;
         }
     }
-    // getCustomer(customerNumber);
 }
 
 function saveCustomer()
