@@ -25,7 +25,7 @@ function loadProductList() {
                     '<div class="text-center"> ' +
                         '<h4 class="h5 mb-2"><a href="#" class="text-secondary"> ' + productDataList[index].productName + ' </a></h4> ' +
                         '<a> ' + productDataList[index].productDescription + ' </a> ' +
-                        '<h5 class="mb-0 text-primary">SRD-</h5> ' +
+                        '<h5 class="mb-0 text-primary">SRD 20,-</h5> ' +
                     '</div> ' +
                 '</div> ';
 

@@ -45,9 +45,10 @@ function saveCustomer() {
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState > 3 && xhttp.status == 200) {
                 let isAdded = this.responseText;
+                console.log(isAdded);
                 if (isAdded == "true") {
-                    clearInputFields();
                     alert("Customer saved");
+                    clearInputFields();
                 } else {
                     alert("Customer not saved")
                 }

@@ -85,9 +85,11 @@ function deleteCustomer(customerNumber)
 function editCustomer(customerNumber)
 {
     for (let customerNumberElement of customerDataList) {
-        console.log("Element: "+ customerNumberElement.customerNumber + " Customer: "+ customerNumber);
-        console.log(customerNumberElement.customerNumber == customerNumber);
+        // console.log("Element: "+ customerNumberElement.customerNumber + " Customer: "+ customerNumber);
+        // console.log(customerNumberElement.customerNumber == customerNumber);
         if (customerNumberElement.customerNumber == customerNumber) {
+            document.getElementById("phoneNumber").disabled = false;
+            document.getElementById("btnSaveCustomer").disabled = false;
             document.getElementById("customerNumber").value = customerNumberElement.customerNumber;
             document.getElementById("name").value = customerNumberElement.name;
             document.getElementById("address").value = customerNumberElement.address;
@@ -99,6 +101,8 @@ function editCustomer(customerNumber)
 
 function saveCustomer()
 {
+    // document.getElementById("phoneNumber").disabled = false;
+
     if(validateForm())
     {
         updateCustomer();

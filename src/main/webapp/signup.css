@@ -4,12 +4,14 @@ body{
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background: linear-gradient(135deg, #e70909, #f3bfbf);
+    /*background: linear-gradient(135deg, #e70909, #f3bfbf);*/
+    background-image: url('factory images/juice_factory_logo.jpg');
+    background-repeat: no-repeat;
 }
 .container{
     max-width: 700px;
     width: 100%;
-    background: #fff;
+    background: #D3D3D3;
     padding: 25px 30px;
     border-radius: 5px;
 }
@@ -25,7 +27,7 @@ body{
     bottom: 0;
     height: 3px;
     width: 30px;
-    background: linear-gradient(135deg, #e70909, #f3bfbf);
+    background: linear-gradient(135deg, #F78702, #f3bfbf);
 }
 /* .container .title-r{
     font-size: 25px;
@@ -69,7 +71,7 @@ form .user-details .input-box{
 }
 .user-details .input-box input:focus,
 .user-details .input-box input:valid{
-    border-color: #e70909;
+    border-color: #F78702;
 }
 form .gender-details .gender-title{
     font-size: 20px;
@@ -88,7 +90,7 @@ form .gender-details .category{
 .gender-details .category .dot{
     height: 18px;
     width: 18px;
-    background: #f3bfbf;
+    background: #ffffff;
     border-radius: 50%;
     margin-right: 10px;
     border: 5px solid transparent;
@@ -97,7 +99,7 @@ form .gender-details .category{
 #dot-2:checked ~ .category label .two,
 #dot-3:checked ~ .category label .three{
     border-color: #f3bfbf;
-    background: #e70909;
+    background: #F78702;
 }
 form input[type="radio"]{
     display: none;
@@ -116,10 +118,10 @@ form .button input{
     font-weight: 500;
     border-radius: 5px;
     letter-spacing: 1px;
-    background: linear-gradient(135deg, #e70909, #f3bfbf);
+    background: linear-gradient(135deg, #F78702, #f3bfbf);
 }
 form .button input:hover{
-    background: linear-gradient(-135deg, #e70909, #f3bfbf);
+    background: linear-gradient(-135deg, #F78702, #f3bfbf);
 }
 @media (max-width: 584px) {
     .container{
