@@ -1,12 +1,7 @@
 package com.example.juiceFactory2_0.app;
 
-import com.example.juiceFactory2_0.adapter.PriceAdapter;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.*;
-import com.example.juiceFactory2_0.entity.Invoice;
-import com.example.juiceFactory2_0.entity.PaymentMethod;
-
-import java.util.Set;
 
 public class Application {
     public static void main(String[] args) {

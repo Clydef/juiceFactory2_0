@@ -6,20 +6,31 @@ import com.example.juiceFactory2_0.entity.Invoice;
 
 import java.text.DecimalFormat;
 
-public class PriceAdapter extends Invoice {
+public class LocalToForeignAdapter {
+    LocalCurrency localCurrency;
+    ForeignCurrency foreignCurrency;
     private Invoice invoice;
     private Double exchangeRate;
     private String orderNumber;
     InvoiceDAO invoiceDAO = new InvoiceDAO(JPAConfiguration.getEntityManager());
 
-    public PriceAdapter(Invoice invoice, Double exchangeRate) {
-        this.invoice = invoice;
-        this.exchangeRate = exchangeRate;
+//    public PriceAdapter(Invoice invoice, Double exchangeRate) {
+//        this.invoice = invoice;
+//        this.exchangeRate = exchangeRate;
+//    }
+//
+//    public PriceAdapter(String orderNumber, Double exchangeRate) {
+//        this.orderNumber = orderNumber;
+//        this.exchangeRate = exchangeRate;
+//    }
+
+
+    public LocalToForeignAdapter(LocalCurrency localCurrency) {
+        this.localCurrency = localCurrency;
     }
 
-    public PriceAdapter(String orderNumber, Double exchangeRate) {
-        this.orderNumber = orderNumber;
-        this.exchangeRate = exchangeRate;
+    public LocalToForeignAdapter(ForeignCurrency foreignCurrency) {
+        this.foreignCurrency = foreignCurrency;
     }
 
     public void convertPriceToUSD() {
