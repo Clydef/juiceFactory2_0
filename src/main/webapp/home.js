@@ -14,24 +14,33 @@ function loadProductList() {
                 productList +=
                     '<div class="col-sm-6 col-lg-3 mb-2-6"> ' +
                     '<div class="card-wrapper mb-4"> ' +
-                        '<div class="card-img"><img src="https://scontent.forg2-1.fna.fbcdn.net/v/t39.30808-6/230586954_354541669543274_4846530692725520769_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=AqG5_q_uk8YAX_dkKmp&_nc_ht=scontent.forg2-1.fna&oh=00_AT_2Kujtra3rHZz4qWE2Mxi88yTJaFdYw5eFGDbCgEn4vg&oe=63049026" ' +
-                            'width="240" height="240" alt="..."></div> ' +
-                        '<div class="card-body"> ' +
-                            '<div> ' +
-                                '<a type="button" onclick="addtoCartMgs('+index+')"><i id="' + index +'" class="bg-white p-3 rounded-circle font-weight-600">add to cart</i></a> ' +
-                            '</div> ' +
-                        '</div> ' +
+                    '<div class="card-img"><img src="https://scontent.forg2-1.fna.fbcdn.net/v/t39.30808-6/230586954_354541669543274_4846530692725520769_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=AqG5_q_uk8YAX_dkKmp&_nc_ht=scontent.forg2-1.fna&oh=00_AT_2Kujtra3rHZz4qWE2Mxi88yTJaFdYw5eFGDbCgEn4vg&oe=63049026" ' +
+                    'width="240" height="240" alt="..."></div> ' +
+                    '<div class="card-body"> ' +
+                    '<div> ' +
+                    '<a type="button"><i id="' + index + '" class="bg-white p-3 rounded-circle font-weight-600">add to cart</i></a> ' +
+                    '</div> ' +
+                    '</div> ' +
                     '</div> ' +
                     '<div class="text-center"> ' +
-                        '<h4 class="h5 mb-2"><a href="#" class="text-secondary"> ' + productDataList[index].productName + ' </a></h4> ' +
-                        '<a> ' + productDataList[index].productDescription + ' </a> ' +
-                        '<h5 class="mb-0 text-primary">SRD 20,-</h5> ' +
+                    '<h4 class="h5 mb-2"><a href="#" class="text-secondary"> ' + productDataList[index].productName + ' </a></h4> ' +
+                    '<a> ' + productDataList[index].productDescription + ' </a> ' +
+                    '<h5 class="mb-0 text-primary">SRD 20,-</h5> ' +
                     '</div> ' +
-                '</div> ';
+                    '</div> ';
 
             }
             productList += "</ul>";
             document.getElementById("productData").innerHTML = productList;
+
+            var addCartButtons = document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600');
+            for (let i = 0; i < addCartButtons.length; i++) {
+                var button = addCartButtons[i]
+                button.addEventListener('click', function () {
+                    console.log("clicked :)");
+                    addCartButtons[i].innerText = 'Added to cart!'
+                })
+            }
         }
     };
     xhttp.open("GET", "http://localhost:9090/juiceFactory2_0/api/product/list", true);
@@ -39,7 +48,7 @@ function loadProductList() {
 }
 
 function addtoCartMgs(i) {
-    document.getElementById(i).innerHTML = "Added to Cart!";
-    // document.getElementsByClassName("bg-white p-3 rounded-circle font-weight-600").innerHTML = "Added to Cart!";
+    // document.getElementById(i).innerHTML = "Added to Cart!";
+    // document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600')[0].innerText = "Added to Cart!";
 
 }
