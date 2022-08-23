@@ -23,8 +23,8 @@ function loadProductList() {
                     '</div> ' +
                     '</div> ' +
                     '<div class="text-center"> ' +
-                    '<h4 class="h5 mb-2"><a href="#" class="text-secondary"> ' + productDataList[index].productName + ' </a></h4> ' +
-                    '<a> ' + productDataList[index].productDescription + ' </a> ' +
+                    '<h4 class="h5 mb-2"><a class="text-capitalize"> ' + productDataList[index].productName + ' </a></h4> ' +
+                    '<a class="prod-description" style="color:#000000; text-decoration:none" > ' + productDataList[index].productDescription + ' </a> ' +
                     '<h5 class="mb-0 text-primary">SRD 20,-</h5> ' +
                     '</div> ' +
                     '</div> ';
@@ -36,10 +36,7 @@ function loadProductList() {
             var addCartButtons = document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600');
             for (let i = 0; i < addCartButtons.length; i++) {
                 var button = addCartButtons[i]
-                button.addEventListener('click', function () {
-                    console.log("clicked :)");
-                    addCartButtons[i].innerText = 'Added to cart!'
-                })
+                button.addEventListener('click', addToCartClicked)
             }
         }
     };
@@ -50,5 +47,15 @@ function loadProductList() {
 function addtoCartMgs(i) {
     // document.getElementById(i).innerHTML = "Added to Cart!";
     // document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600')[0].innerText = "Added to Cart!";
+}
 
+function addToCartClicked(event) {
+    // console.log("clicked :)");
+    var button = event.target;
+    button.innerText = 'Added to cart!';
+    var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
+    var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
+    var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
+    console.log(productName);
+    console.log(productDescription);
 }
