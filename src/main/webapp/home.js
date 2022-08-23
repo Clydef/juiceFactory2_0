@@ -1,3 +1,5 @@
+import {addItemToCart} from './shopping_cart.js'
+
 loadProductList();
 
 function loadProductList() {
@@ -5,6 +7,8 @@ function loadProductList() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let productDataList = JSON.parse(this.responseText);
+            // var cartItems = document.getElementsByClassName('cart-items')[0];
+            // console.log(cartItems);
             console.log("attempt loading...");
             let productList = ' <ul class="w3-ul w3-card-4"> ';
 
@@ -14,7 +18,7 @@ function loadProductList() {
                 productList +=
                     '<div class="col-sm-6 col-lg-3 mb-2-6"> ' +
                     '<div class="card-wrapper mb-4"> ' +
-                    '<div class="card-img"><img src="https://scontent.forg2-1.fna.fbcdn.net/v/t39.30808-6/230586954_354541669543274_4846530692725520769_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=AqG5_q_uk8YAX_dkKmp&_nc_ht=scontent.forg2-1.fna&oh=00_AT_2Kujtra3rHZz4qWE2Mxi88yTJaFdYw5eFGDbCgEn4vg&oe=63049026" ' +
+                    '<div class="card-img"><img src="factory%20images/juice_factory_sappen.jpg" ' +
                     'width="240" height="240" alt="..."></div> ' +
                     '<div class="card-body"> ' +
                     '<div> ' +
@@ -49,6 +53,14 @@ function addtoCartMgs(i) {
     // document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600')[0].innerText = "Added to Cart!";
 }
 
+// function addItemToCart(productName, productDescription) {
+    // var cartRow = document.createElement('div');
+    // console.log('productName: '+ productName);
+    // var cartItems = document.getElementsByClassName('container pb-5 mt-n2 mt-md-n3')[0];
+    // console.log('cartItems: ' + cartItems)
+    // cartItems.append(cartRow)
+// }
+
 function addToCartClicked(event) {
     // console.log("clicked :)");
     var button = event.target;
@@ -56,6 +68,7 @@ function addToCartClicked(event) {
     var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
     var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
     var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
-    console.log(productName);
-    console.log(productDescription);
+    // console.log(productName);
+    // console.log(productDescription);
+    addItemToCart(productName, productDescription);
 }

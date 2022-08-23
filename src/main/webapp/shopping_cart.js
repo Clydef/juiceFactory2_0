@@ -38,8 +38,10 @@ function quantityChanged(event) {
 }
 
 function updateCartTotal() {
+    addItemToCart('test1', 'test2');
     // console.log('cartItemContainer ' + document.getElementsByClassName('cart-items')[0]);
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+    // console.log(cartItemContainer);
     // console.log('cartRows' + cartItemContainer.getElementsByClassName('d-sm-flex justify-content-between my-4 pb-4 border-bottom'));
     var cartRows = cartItemContainer.getElementsByClassName('d-sm-flex justify-content-between my-4'); // pb-4 border-bottom
     var total = 0;
@@ -50,13 +52,22 @@ function updateCartTotal() {
         var quantityElement = cartRow.getElementsByClassName('form-control form-control-sm')[0];
         // console.log(priceElement, quantityElement);
         var price = parseFloat(priceElement.innerText.replace('SRD ', ''));
-        console.log('Price: ' + price);
+        // console.log('Price: ' + price);
         var quantity = quantityElement.value;
-        console.log('Price * Quantity: ' + price * quantity)
+        // console.log('Price * Quantity: ' + price * quantity)
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100;
     document.getElementsByClassName('h3 font-weight-semibold text-center py-3')[0]
         .innerText = 'SRD ' + total;
+}
+
+export function addItemToCart(productName, productDescription) {
+    var cartRow = document.createElement('div');
+    // console.log('productName: '+ productName);
+    cartRow.innerText = 'Orange test';
+    var cartItems = document.getElementsByClassName('cart-items')[0];
+    console.log('cartItems: ' + cartItems)
+    cartItems.append(cartRow)
 }
 
