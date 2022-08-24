@@ -3,6 +3,8 @@ package com.example.juiceFactory2_0.app;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.*;
 
+import java.time.LocalDate;
+
 public class Application {
     public static void main(String[] args) {
         JPAConfiguration.getEntityManager();
@@ -116,7 +118,7 @@ public class Application {
 //        System.out.println(orderDAO.retrieveOrderList());
 //        System.out.println(orderDAO.findByOrderNumber("TS002"));
 //        System.out.println(orderDAO.findOrderDateByQuarter(LocalDate.of(2022, 10, 1)));
-//        System.out.println(orderDAO.findOrderDateByMonth(LocalDate.of(2021, 10, 1)));
+        System.out.println(orderDAO.findOrderDateByMonth(LocalDate.of(2021, 10, 1)));
 //        System.out.println(orderDAO.mostFrequentCustomer());
 //        System.out.println(orderProductDAO.mostFrequentBoughtProduct());
 
