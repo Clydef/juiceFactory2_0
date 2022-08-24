@@ -7,8 +7,8 @@ if (document.readyState == 'loading') {
 }
 
 function ready() {
+    addItemToCart();
     var removeCartItemButtons = document.getElementsByClassName('btn-outline-danger btn-sm btn-block mb-2')
-// console.log(removeCartItemButtons);
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i]
         button.addEventListener('click', removeCartItem);
@@ -40,21 +40,15 @@ function quantityChanged(event) {
 }
 
 function updateCartTotal() {
-    addItemToCart(); //test
-    // console.log('cartItemContainer ' + document.getElementsByClassName('cart-items')[0]);
+    // addItemToCart(); //test
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    // console.log(cartItemContainer);
-    // console.log('cartRows' + cartItemContainer.getElementsByClassName('d-sm-flex justify-content-between my-4 pb-4 border-bottom'));
     var cartRows = cartItemContainer.getElementsByClassName('d-sm-flex justify-content-between my-4'); // pb-4 border-bottom
     var total = 0;
     for (let i = 0; i < cartRows.length; i++) {
         var cartRow = cartRows[i]
-        // console.log('priceElement ' + cartRow.getElementsByClassName('font-size-lg text-primary pt-2')[0]);
         var priceElement = cartRow.getElementsByClassName('font-size-lg text-primary pt-2')[0];
         var quantityElement = cartRow.getElementsByClassName('form-control form-control-sm')[0];
-        // console.log(priceElement, quantityElement);
         var price = parseFloat(priceElement.innerText.replace('SRD ', ''));
-        // console.log('Price: ' + price);
         var quantity = quantityElement.value;
         // console.log('Price * Quantity: ' + price * quantity)
         total = total + (price * quantity)
@@ -64,18 +58,26 @@ function updateCartTotal() {
         .innerText = 'SRD ' + total;
 }
 
-export function addItemToCart() {
-    console.log(sessionProduct.productName);
-    var productNameSes = sessionProduct.productName;
+function addItemToCart() {
+    console.log(sessionProduct);
+    console.log(sessionProduct[0].productName);
+    console.log(sessionProduct[1].productName);
+    // var productNameSes = sessionProduct[0].productName;
     var cartRow = document.createElement('div');
     cartRow.classList.add('row');
     var cartItems = document.getElementsByClassName('cart-items')[0];
-    console.log('cartItems: ' + cartItems)
+    // var cartItemNames = cartItems.getElementsByClassName('product-card-title');
+    // for (let i = 0; i < cartItemNames.length; i++) {
+        /*if (cartItemNames[i].innerText == productNameSes) {
+            alert('Already in cart');
+            return
+        }*/
+    // }
     var cartRowContents = `<div class="media d-block d-sm-flex text-center text-sm-left">
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img
                             src="https://via.placeholder.com/240x240/eeeeee/000000" alt="Product"></a>
                     <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">${productNameSes}</a></h3>
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">productNameSe</a></h3>
                         <div class="font-size-sm"><span class="text-muted mr-2">Type:</span>...</div>
                         <div class="font-size-lg text-primary pt-2">SRD 23</div>
                     </div>
