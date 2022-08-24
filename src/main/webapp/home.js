@@ -1,4 +1,4 @@
-import {addItemToCart, addToCartClicked} from './shopping_cart.js'
+// import {addItemToCart, addToCartClicked} from './shopping_cart.js'
 
 loadProductList();
 
@@ -53,23 +53,25 @@ function addtoCartMgs(i) {
     // document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600')[0].innerText = "Added to Cart!";
 }
 
-// function addItemToCart(productName, productDescription) {
-    // var cartRow = document.createElement('div');
-    // console.log('productName: '+ productName);
-    // var cartItems = document.getElementsByClassName('container pb-5 mt-n2 mt-md-n3')[0];
-    // console.log('cartItems: ' + cartItems)
+/*function addItemToCart(productName, productDescription) {
+    var cartRow = document.createElement('div');
+    console.log('productName: '+ productName);
+    var cartItems = document.getElementsByClassName('cart-items')[0];
+    console.log('cartItems: ' + cartItems)
     // cartItems.append(cartRow)
-// }
+}*/
 
-/*
 function addToCartClicked(event) {
     // console.log("clicked :)");
     var button = event.target;
+    console.log(button);
     button.innerText = 'Added to cart!';
     var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
     var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
     var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
+    var productObject = {'productName': productName, 'productDescription': productDescription};
+    sessionStorage.setItem('sessionProductObject', JSON.stringify(productObject));
     // console.log(productName);
     // console.log(productDescription);
-    addItemToCart(productName, productDescription);
-}*/
+    // addItemToCart(productName, productDescription);
+}
