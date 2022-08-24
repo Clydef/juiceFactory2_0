@@ -38,7 +38,7 @@ function quantityChanged(event) {
 }
 
 function updateCartTotal() {
-    addItemToCart('test1', 'test2');
+    // addItemToCart('test1', 'test2');
     // console.log('cartItemContainer ' + document.getElementsByClassName('cart-items')[0]);
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
     // console.log(cartItemContainer);
@@ -65,9 +65,21 @@ function updateCartTotal() {
 export function addItemToCart(productName, productDescription) {
     var cartRow = document.createElement('div');
     // console.log('productName: '+ productName);
-    cartRow.innerText = 'Orange test';
+    cartRow.innerText = productName;
     var cartItems = document.getElementsByClassName('cart-items')[0];
     console.log('cartItems: ' + cartItems)
     cartItems.append(cartRow)
+}
+
+export function addToCartClicked(event) {
+    // console.log("clicked :)");
+    var button = event.target;
+    button.innerText = 'Added to cart!';
+    var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
+    var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
+    var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
+    console.log(productName);
+    console.log(productDescription);
+    addItemToCart(productName, productDescription);
 }
 

@@ -1,4 +1,4 @@
-import {addItemToCart} from './shopping_cart.js'
+import {addItemToCart, addToCartClicked} from './shopping_cart.js'
 
 loadProductList();
 
@@ -61,6 +61,7 @@ function addtoCartMgs(i) {
     // cartItems.append(cartRow)
 // }
 
+/*
 function addToCartClicked(event) {
     // console.log("clicked :)");
     var button = event.target;
@@ -71,4 +72,4 @@ function addToCartClicked(event) {
     // console.log(productName);
     // console.log(productDescription);
     addItemToCart(productName, productDescription);
-}
+}*/
