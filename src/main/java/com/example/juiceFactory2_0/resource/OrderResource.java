@@ -8,6 +8,7 @@ import com.example.juiceFactory2_0.entity.Order;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.time.LocalDate;
 import java.util.List;
 
 @Path("/order")
@@ -49,5 +50,28 @@ public class OrderResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Order getOrder(String orderNumber) {
         return orderDAO.findByOrderNumber(orderNumber);
+    }
+
+    @Path("/mostFrequentCustomer")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Order mostFrequentCustomer() {
+        return orderDAO.mostFrequentCustomer();
+    }
+
+    @Path("/findOrderDateByMonth")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Order> findOrderDateByMonth(LocalDate orderDate) {
+        return orderDAO.findOrderDateByMonth(orderDate);
+    }
+
+    @Path("/findOrderDateByQuarter")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Order> findOrderDateByQuarter(LocalDate orderDate) {
+        return orderDAO.findOrderDateByQuarter(orderDate);
     }
 }
