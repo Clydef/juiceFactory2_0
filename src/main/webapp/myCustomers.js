@@ -9,9 +9,17 @@ function loadCustomerList() {
             let customerList = ' <ul class="w3-ul w3-card-4"> ';
 
             customerDataList.reverse();
+            let customerName = '';
 
             for (let index = 0; index < customerDataList.length; index++) {
-                customerList +=
+                if (customerDataList[index].category === 'BEDRIJF') {
+                    customerName = customerDataList[index].firstName;
+                } else {
+                    customerName = customerDataList[index].firstName + customerDataList[index].lastName;
+                }
+
+
+                    customerList +=
                     ' <li class="w3-bar"> ' +
 
                     ' <button id= ' + customerDataList[index].customerNumber + ' onclick="editCustomer(this.id)" ' +
@@ -23,7 +31,7 @@ function loadCustomerList() {
 
                     ' <img src="factory%20images/no_customer_pic.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"> ' +
                     ' <div class="w3-bar-item"> ' +
-                    ' <span class="w3-large"> Name: ' +  customerDataList[index].name  + ' </span><br> ' +
+                    ' <span class="w3-large"> Name: ' +  customerName  + ' </span><br> ' +
                     ' <span> Address: ' +  customerDataList[index].address  + ' </span> <br>' +
 
                     ' <span> District: ' +  customerDataList[index].district  + ' </span> <br>' +
@@ -91,7 +99,7 @@ function editCustomer(customerNumber)
             document.getElementById("phoneNumber").disabled = false;
             document.getElementById("btnSaveCustomer").disabled = false;
             document.getElementById("customerNumber").value = customerNumberElement.customerNumber;
-            document.getElementById("name").value = customerNumberElement.name;
+            document.getElementById("name").value = customerNumberElement.firstName;
             document.getElementById("address").value = customerNumberElement.address;
             document.getElementById("district").value = customerNumberElement.district;
             document.getElementById("phoneNumber").value = customerNumberElement.phoneNumber;

@@ -2,6 +2,8 @@ package com.example.juiceFactory2_0.resource;
 
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.OrderDAO;
+import com.example.juiceFactory2_0.dto.OrderCountByYear;
+import com.example.juiceFactory2_0.dto.OrderYear;
 import com.example.juiceFactory2_0.entity.Order;
 //import jakarta.ws.rs.*;
 //import jakarta.ws.rs.core.MediaType;
@@ -63,8 +65,8 @@ public class OrderResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Order> findOrderDateByMonth(LocalDate orderDate) {
-        return orderDAO.findOrderDateByMonth(orderDate);
+    public List<OrderCountByYear> findOrderDateByMonth(OrderYear year) {
+        return orderDAO.findOrderDateByMonth(Integer.parseInt(year.stringyear));
     }
 
     @Path("/findOrderDateByQuarter")

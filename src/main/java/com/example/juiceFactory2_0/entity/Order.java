@@ -1,55 +1,36 @@
 package com.example.juiceFactory2_0.entity;
 
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-@JsonIgnoreProperties({"customer","orderProducts", "invoice", "orderStatus"})
 @Entity
 @Table(name = "orders")
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, updatable = false)
+    @Column(unique = true)
     private String orderNumber;
+
     @ManyToOne
-    @JoinColumn(name = "customer_id")
     private Customer customer;
-    @OneToMany(mappedBy = "order")
-    private Set<OrderProducts> orderProducts;
-    @OneToOne
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
-    @Column
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
+
+//    @Temporal(TemporalType.DATE)
     private LocalDate orderDate;
-    @Column
-    private LocalDate deliveryDate;
-    @ManyToOne
-    @JoinColumn(name = "order_status_id")
-    private OrderStatus orderStatus;
 
-    public Order(Long id, String orderNumber, Customer customer, Set<OrderProducts> orderProducts, Invoice invoice,
-                 LocalDate orderDate, LocalDate deliveryDate, OrderStatus orderStatus) {
-        this.id = id;
-        this.orderNumber = orderNumber;
-        this.customer = customer;
-        this.orderProducts = orderProducts;
-        this.invoice = invoice;
-        this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
-        this.orderStatus = orderStatus;
-    }
+    private BigDecimal totalAmount;
 
-    public Order() {
-
-    }
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
 
     public Long getId() {
         return id;
@@ -75,20 +56,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public Set<OrderProducts> getOrderProducts() {
-        return orderProducts;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderProducts(Set<OrderProducts> orderProducts) {
-        this.orderProducts = orderProducts;
-    }
-
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public LocalDate getOrderDate() {
@@ -99,31 +72,19 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public LocalDate getDeliveryDate() {
-        return deliveryDate;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setDeliveryDate(LocalDate deliveryDate) {
-        this.deliveryDate = deliveryDate;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", orderNumber='" + orderNumber + '\'' +
-                ", customer=" + customer.getId() +
-                ", orderDate=" + orderDate +
-                ", deliveryDate=" + deliveryDate +
-                ", orderStatus=" + orderStatus.getOrderState() +
-                '}' + '\n';
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

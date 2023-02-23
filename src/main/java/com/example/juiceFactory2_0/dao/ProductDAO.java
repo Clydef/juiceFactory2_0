@@ -41,13 +41,14 @@ public class ProductDAO {
     }
 
     public int updateProduct(Product product) {
-        entityManager.getTransaction().begin();
+        /*entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("UPDATE Product c SET c.productDescription = :productDescription where c.productCode = :productCode");
         query.setParameter("productCode", product.getProductDescription());
         query.setParameter("productDescription", product.getProductDescription());
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
-        return rowsUpdated;
+        return rowsUpdated;*/
+        return 0;
     }
 }

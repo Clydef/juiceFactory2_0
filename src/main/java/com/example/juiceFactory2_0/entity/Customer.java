@@ -2,65 +2,80 @@ package com.example.juiceFactory2_0.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true, updatable = false)
-    private Long customerNumber;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String address;
-    @Column(nullable = false)
-    private String district;
-    @Column(nullable = false)
+    @Column(unique = true)
+    private String customerNumber;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
     private String phoneNumber;
-    @Column
+
+    private String address;
+
+    private String district;
+
+//    @Temporal(TemporalType.DATE)
     private LocalDate dateRegistered;
 
-    public Customer(Long id, Long customerNumber, String name, String address, String district, String phoneNumber,
-                    LocalDate dateRegistered) {
-        this.id = id;
-        this.customerNumber = customerNumber;
-        this.name = name;
-        this.address = address;
-        this.district = district;
-        this.phoneNumber = phoneNumber;
-        this.dateRegistered = dateRegistered;
-    }
-
-    public Customer() {
-
-    }
+    private String category;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long customerId) {
+        this.id = customerId;
     }
 
-    public Long getCustomerNumber() {
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(Long customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {
@@ -79,14 +94,6 @@ public class Customer {
         this.district = district;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public LocalDate getDateRegistered() {
         return dateRegistered;
     }
@@ -95,16 +102,11 @@ public class Customer {
         this.dateRegistered = dateRegistered;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", customerNumber=" + customerNumber +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", district='" + district + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", dateRegistered=" + dateRegistered +
-                '}';
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

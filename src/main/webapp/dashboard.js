@@ -1,5 +1,5 @@
-getMostFrequentBoughtProduct();
-getMostFrequentCustomer();
+// getMostFrequentBoughtProduct();
+// getMostFrequentCustomer();
 
 function getMostFrequentBoughtProduct() {
         let xhttp = new XMLHttpRequest();
@@ -16,7 +16,7 @@ function getMostFrequentBoughtProduct() {
                 }
             }
         };
-        xhttp.setRequestHeader("Content-Type", "application/json");
+        // xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send();
 }
 
@@ -35,12 +35,23 @@ function getMostFrequentCustomer() {
             }
         }
     };
-    xhttp.setRequestHeader("Content-Type", "application/json");
+    // xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
+}
 
 
-}function findOrderDateByMonth() {
-    let reportRequest = {"selectedYear": selectedMonth}
+
+function yearReport() {
+    var e = document.getElementById("details");
+    var value = e.value;
+    console.log(value);
+    var text = e.options[e.selectedIndex].text;
+    console.log(text);
+    findOrderDateByMonth(text);
+}
+
+function findOrderDateByMonth(year) {
+    let reportRequest = {'stringyear': year}
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://localhost:9090/juiceFactory2_0/api/order/findOrderDateByMonth", true);
     xhttp.onreadystatechange = function() {

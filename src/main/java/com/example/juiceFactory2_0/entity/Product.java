@@ -1,55 +1,28 @@
 package com.example.juiceFactory2_0.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Set;
+import java.math.BigDecimal;
 
-@JsonIgnoreProperties("orderProducts")
 @Entity
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique = true)
-    private String productCode;
-    @OneToMany(mappedBy = "product")
-    private Set<OrderProducts> orderProducts;
-    @Column(nullable = false)
-    private String productName;
-    @Column
-    private String productDescription;
-    @Column
-    private LocalDate productionDate;
-    @Column
-    private LocalDate expireDate;
-    @Column
-    private String typeOfProduct; //sap of vrucht
 
-    public Product(Long id, String productCode, Set<OrderProducts> orderProducts, String productName,
-                   String productDescription, LocalDate productionDate, LocalDate expireDate, String typeOfProduct) {
-        this.id = id;
-        this.productCode = productCode;
-        this.orderProducts = orderProducts;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productionDate = productionDate;
-        this.expireDate = expireDate;
-        this.typeOfProduct = typeOfProduct;
-    }
+    private String name;
 
-    public Product() {
+    private String description;
 
-    }
+    private BigDecimal price;
 
-    public Product(Long id, String productName, String productDescription) {
-        this.id = id;
-        this.productName = productName;
-        this.productDescription = productDescription;
-    }
+    private Integer quantityInStock;
+
+    private String imageUrl;
+    @Column(unique = true)
+    private String code;
+
+    private String category;
 
     public Long getId() {
         return id;
@@ -59,72 +32,59 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getName() {
+        return name;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Set<OrderProducts> getOrderProducts() {
-        return orderProducts;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOrderProducts(Set<OrderProducts> orderProducts) {
-        this.orderProducts = orderProducts;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getProductName() {
-        return productName;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public Integer getQuantityInStock() {
+        return quantityInStock;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setQuantityInStock(Integer quantityInStock) {
+        this.quantityInStock = quantityInStock;
     }
 
-    public LocalDate getProductionDate() {
-        return productionDate;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setProductionDate(LocalDate productionDate) {
-        this.productionDate = productionDate;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public LocalDate getExpireDate() {
-        return expireDate;
+    public String getCode() {
+        return code;
     }
 
-    public void setExpireDate(LocalDate expireDate) {
-        this.expireDate = expireDate;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getTypeOfProduct() {
-        return typeOfProduct;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTypeOfProduct(String typeOfProduct) {
-        this.typeOfProduct = typeOfProduct;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productCode='" + productCode + '\'' +
-                ", productName='" + productName + '\'' +
-                ", productDescription='" + productDescription + '\'' +
-                ", productionDate=" + productionDate +
-                ", expireDate=" + expireDate +
-                ", typeOfProduct='" + typeOfProduct + '\'' +
-                '}';
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

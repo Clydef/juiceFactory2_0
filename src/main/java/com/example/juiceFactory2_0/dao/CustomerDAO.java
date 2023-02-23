@@ -5,6 +5,8 @@ import com.example.juiceFactory2_0.entity.Customer;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class CustomerDAO {
@@ -20,6 +22,8 @@ public class CustomerDAO {
         TypedQuery<Customer> query = entityManager.createQuery(jpql, Customer.class);
         List<Customer> customerList = query.getResultList();
         entityManager.getTransaction().commit();
+        System.out.println("Entity MAnager is open: ");
+        System.out.println(entityManager.isOpen());
         return customerList;
     }
 
@@ -33,6 +37,7 @@ public class CustomerDAO {
     }
 
     public Customer insert(Customer customer) {
+        customer.setDateRegistered(LocalDate.now());
         entityManager.getTransaction().begin();
         entityManager.persist(customer);
         entityManager.getTransaction().commit();
@@ -40,7 +45,7 @@ public class CustomerDAO {
     }
 
     public int updateCustomer(Customer customer) {
-        entityManager.getTransaction().begin();
+        /*entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("UPDATE Customer c SET c.address = :address, c.name = :name," +
                 "c.district = :district, c.phoneNumber = :phoneNumber where c.customerNumber = :customerNumber");
         query.setParameter("customerNumber", customer.getCustomerNumber());
@@ -51,7 +56,8 @@ public class CustomerDAO {
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
-        return rowsUpdated;
+        return rowsUpdated;*/
+        return 0;
     }
 
     public int delete(Long customerNumber) {

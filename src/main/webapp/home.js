@@ -20,15 +20,17 @@ function loadProductList() {
             // var cartItems = document.getElementsByClassName('cart-items')[0];
             // console.log(cartItems);
             console.log("attempt loading...");
+            console.log(productDataList);
             let productList = ' <ul class="w3-ul w3-card-4"> ';
 
             productDataList.reverse();
+            console.log(productDataList);
 
             for (let index = 0; index < productDataList.length; index++) {
                 productList +=
                     '<div class="col-sm-6 col-lg-3 mb-2-6"> ' +
                     '<div class="card-wrapper mb-4"> ' +
-                    '<div class="card-img"><img src="factory%20images/juice_factory_sappen.jpg" ' +
+                    '<div class="card-img"><img src="'+productDataList[index].imageUrl+'" ' +
                     'width="240" height="240" alt="..."></div> ' +
                     '<div class="card-body"> ' +
                     '<div> ' +
@@ -37,9 +39,9 @@ function loadProductList() {
                     '</div> ' +
                     '</div> ' +
                     '<div class="text-center"> ' +
-                    '<h4 class="h5 mb-2"><a class="text-capitalize"> ' + productDataList[index].productName + ' </a></h4> ' +
-                    '<a class="prod-description" style="color:#000000; text-decoration:none" > ' + productDataList[index].productDescription + ' </a> ' +
-                    '<h5 class="mb-0 text-primary">SRD 20,-</h5> ' +
+                    '<h4 class="h5 mb-2"><a class="text-capitalize"> ' + productDataList[index].name + ' </a></h4> ' +
+                    '<a class="prod-description" style="color:#000000; text-decoration:none" > ' + productDataList[index].description + ' </a> ' +
+                    '<h5 class="mb-0 text-primary">SRD '+ productDataList[index].price +',-</h5> ' +
                     '</div> ' +
                     '</div> ';
 

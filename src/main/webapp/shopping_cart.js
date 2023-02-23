@@ -60,8 +60,8 @@ function updateCartTotal() {
 
 function addItemToCart() {
     console.log(sessionProduct);
-    console.log(sessionProduct[0].productName);
-    console.log(sessionProduct[1].productName);
+    // console.log(sessionProduct[0].productName);
+    // console.log(sessionProduct[1].productName);
     // var productNameSes = sessionProduct[0].productName;
     var cartRow = document.createElement('div');
     cartRow.classList.add('row');
@@ -73,11 +73,15 @@ function addItemToCart() {
             return
         }*/
     // }
-    var cartRowContents = `<div class="media d-block d-sm-flex text-center text-sm-left">
+    var cartRowContents;
+    for (let i = 0; i < sessionProduct.length; i++) {
+        console.log(sessionProduct[i].productName)
+
+        cartRowContents += `<div class="media d-block d-sm-flex text-center text-sm-left">
                     <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img
                             src="https://via.placeholder.com/240x240/eeeeee/000000" alt="Product"></a>
                     <div class="media-body pt-3">
-                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">productNameSe</a></h3>
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">${sessionProduct[i].productName}</a></h3>
                         <div class="font-size-sm"><span class="text-muted mr-2">Type:</span>...</div>
                         <div class="font-size-lg text-primary pt-2">SRD 23</div>
                     </div>
@@ -110,19 +114,8 @@ function addItemToCart() {
                         Remove
                     </button>
                 </div>`
+    }
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
 }
-
-// export function addToCartClicked(event) {
-//     // console.log("clicked :)");
-//     var button = event.target;
-//     button.innerText = 'Added to cart!';
-//     var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
-//     var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
-//     var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
-//     console.log(productName);
-//     console.log(productDescription);
-//     addItemToCart(productName, productDescription);
-// }
 

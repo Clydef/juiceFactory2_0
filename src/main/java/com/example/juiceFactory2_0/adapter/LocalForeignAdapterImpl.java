@@ -1,17 +1,16 @@
 package com.example.juiceFactory2_0.adapter;
-import com.example.juiceFactory2_0.entity.Invoice;
 
 import java.text.DecimalFormat;
 
 public class LocalForeignAdapterImpl implements LocalForeignAdapter {
-    private Invoice invoice;
+//    private Invoice invoice;
     private ForeignCurrency foreignCurrency;
 
-    public LocalForeignAdapterImpl(Invoice invoice) {
+    /*public LocalForeignAdapterImpl(Invoice invoice) {
         this.invoice = invoice;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public ForeignCurrency convertPriceToUSD(Double exchangeRate) {
         double newPrice;
         newPrice = invoice.getTotalPrice() / exchangeRate;
@@ -19,7 +18,7 @@ public class LocalForeignAdapterImpl implements LocalForeignAdapter {
         df.format(newPrice);
         foreignCurrency.setTotalPriceInUSD(newPrice);
         return foreignCurrency;
-    }
+    }*/
 
     /*public void convertToUSD() {
         double exchangedPrice;

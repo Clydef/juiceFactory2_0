@@ -3,18 +3,32 @@ package com.example.juiceFactory2_0.app;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Random;
 
 public class Application {
     public static void main(String[] args) {
-        JPAConfiguration.getEntityManager();
-        CustomerDAO customerDAO = new CustomerDAO(JPAConfiguration.getEntityManager());
-        OrderDAO orderDAO = new OrderDAO(JPAConfiguration.getEntityManager());
-        OrderStatusDAO orderStatusDAO = new OrderStatusDAO(JPAConfiguration.getEntityManager());
-        ProductDAO productDAO = new ProductDAO(JPAConfiguration.getEntityManager());
-        InvoiceDAO invoiceDAO = new InvoiceDAO(JPAConfiguration.getEntityManager());
-        PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO(JPAConfiguration.getEntityManager());
-        OrderProductDAO orderProductDAO = new OrderProductDAO(JPAConfiguration.getEntityManager());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(formatter.format(new Date()));
+        System.out.println(LocalDate.now());
+        int min = 2000; // Minimum value of range
+        int max = 9999; // Maximum value of range
+        // Print the min and max
+        System.out.println("Random value in int from "+ min + " to " + max + ":");
+        // Generate random int value from min to max
+        int random_int = (int)Math.floor(Math.random() * (max - min + 1) + min);
+        // Printing the generated random numbers
+        System.out.println(random_int);
+//        JPAConfiguration.getEntityManager();
+//        CustomerDAO customerDAO = new CustomerDAO(JPAConfiguration.getEntityManager());
+//        OrderDAO orderDAO = new OrderDAO(JPAConfiguration.getEntityManager());
+//        OrderStatusDAO orderStatusDAO = new OrderStatusDAO(JPAConfiguration.getEntityManager());
+//        ProductDAO productDAO = new ProductDAO(JPAConfiguration.getEntityManager());
+//        InvoiceDAO invoiceDAO = new InvoiceDAO(JPAConfiguration.getEntityManager());
+//        PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO(JPAConfiguration.getEntityManager());
+//        OrderProductDAO orderProductDAO = new OrderProductDAO(JPAConfiguration.getEntityManager());
 
 
         /*Customer customer1 = new Customer();
@@ -87,7 +101,7 @@ public class Application {
 
 
 
-        System.out.println(customerDAO.retrieveCustomerList());
+//        System.out.println(customerDAO.retrieveCustomerList());
 //        System.out.println(productDAO.findProductByProductCode("J31102"));
 
 //        PaymentMethod paymentMethod1 = new PaymentMethod();
@@ -118,10 +132,11 @@ public class Application {
 //        System.out.println(orderDAO.retrieveOrderList());
 //        System.out.println(orderDAO.findByOrderNumber("TS002"));
 //        System.out.println(orderDAO.findOrderDateByQuarter(LocalDate.of(2022, 10, 1)));
-        System.out.println(orderDAO.findOrderDateByMonth(LocalDate.of(2021, 10, 1)));
+//        System.out.println(orderDAO.findOrderDateByMonth(2022));
 //        System.out.println(orderDAO.mostFrequentCustomer());
 //        System.out.println(orderProductDAO.mostFrequentBoughtProduct());
 
+//        orderDAO.findOrderDateByMonth(2021);
 
         JPAConfiguration.shutdown();
 

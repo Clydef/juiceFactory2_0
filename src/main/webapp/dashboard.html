@@ -8,19 +8,30 @@
 <body>
 <p>Most Frequent Bought Product</p>
 <div id="mostFrequentBoughtProduct"></div>
+<p>
+    <button onclick="getMostFrequentBoughtProduct()" class="w3-button w3-section w3-teal w3-ripple">
+        Find Frequent Bought Product
+    </button>
+</p>
 <br>
 <br>
-<p>Most Frequent Bought Product</p>
+<p>Most Frequent Customer</p>
 <div id="mostFrequentCustomer"></div>
+<p>
+    <button onclick="getMostFrequentCustomer()" class="w3-button w3-section w3-teal w3-ripple">
+        Find Most Frequent Customer
+    </button>
+</p>
 <br>
 <br>
 <p>Find OrderDate By Month</p>
-<div class="input-box">
-    <span class="details">Enter a delivery date:</span>
-    <input type="month" id="orderDateByMonthCalendar" required>
-</div>
+    <label for="details">Get orders by year:</label>
+<select name="details" id="details">
+    <option value="2022">2022</option>
+    <option value="2021">2021</option>
+</select>
 <p>
-    <button id="findOrderDateByMonthBtn" onclick="" class="w3-button w3-section w3-teal w3-ripple">
+    <button id="findOrderDateByMonthBtn" onclick="yearReport()" class="w3-button w3-section w3-teal w3-ripple">
         Find Orders
     </button>
 </p>

@@ -1,6 +1,7 @@
 package com.example.juiceFactory2_0.dao;
 
 
+import com.example.juiceFactory2_0.dto.OrderCountByYear;
 import com.example.juiceFactory2_0.entity.Order;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -33,13 +34,23 @@ public class OrderDAO {
         return orderList;
     }
 
-    public List<Order> findOrderDateByMonth(LocalDate orderDate) {
-        entityManager.getTransaction().begin();
-        String jpql = "select c from Order c where MONTH(c.orderDate) =:month";
-        TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
-        List<Order> orderList = query.setParameter("month",  orderDate.getMonth().getValue()).getResultList();
-        entityManager.getTransaction().commit();
-        return orderList;
+    public List<OrderCountByYear> findOrderDateByMonth(int year) {
+        if (entityManager.getTransaction().isActive()) {
+            String jpql = "select new com.example.juiceFactory2_0.dto.OrderCountByYear(count(c.orderDate), c.orderDate) from Order c where YEAR(c.orderDate) =:year group by MONTH(c.orderDate) order by c.orderDate";
+            TypedQuery<OrderCountByYear> query = entityManager.createQuery(jpql, OrderCountByYear.class);
+            List<OrderCountByYear> orderList = query.setParameter("year", year).getResultList();
+            entityManager.getTransaction().commit();
+            System.out.println(orderList);
+            return orderList;
+        } else {
+            entityManager.getTransaction().begin();
+            String jpql = "select new com.example.juiceFactory2_0.dto.OrderCountByYear(count(c.orderDate), c.orderDate) from Order c where YEAR(c.orderDate) =:year group by MONTH(c.orderDate) order by c.orderDate";
+            TypedQuery<OrderCountByYear> query = entityManager.createQuery(jpql, OrderCountByYear.class);
+            List<OrderCountByYear> orderList = query.setParameter("year", year).getResultList();
+            entityManager.getTransaction().commit();
+            System.out.println(orderList);
+            return orderList;
+        }
     }
 
     public Order mostFrequentCustomer() {
@@ -69,14 +80,15 @@ public class OrderDAO {
     }
 
     public int updateOrder(Order order) {
-        entityManager.getTransaction().begin();
+        /*entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("UPDATE Order c SET c.deliveryDate = :deliveryDate where c.orderNumber = :orderNumber");
         query.setParameter("orderNumber", order.getOrderNumber());
         query.setParameter("deliveryDate", order.getDeliveryDate());
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
-        return rowsUpdated;
+        return rowsUpdated;*/
+        return 0;
     }
 
     public int delete(String orderNumber) {
