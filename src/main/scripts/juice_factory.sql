@@ -1,5 +1,7 @@
 create database juice_factory;
 
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'customer')
+BEGIN
 CREATE TABLE customer (
                           id BIGINT AUTO_INCREMENT PRIMARY KEY,
                           customer_number VARCHAR(255) UNIQUE NOT NULL,
@@ -12,7 +14,10 @@ CREATE TABLE customer (
                           date_registered DATE,
                           category VARCHAR(255)
 );
+END
 
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'product')
+BEGIN
 CREATE TABLE product (
                          id BIGINT AUTO_INCREMENT PRIMARY KEY,
                          name VARCHAR(255),
@@ -23,8 +28,11 @@ CREATE TABLE product (
                          code VARCHAR(255) UNIQUE NOT NULL,
                          category VARCHAR(255)
 );
+END
 
-CREATE TABLE order (
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'orders')
+BEGIN
+CREATE TABLE orders (
                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
                        order_number VARCHAR(255) UNIQUE NOT NULL,
                        customer_id BIGINT,
@@ -32,7 +40,10 @@ CREATE TABLE order (
                        total_amount DECIMAL(10, 2),
                        payment_method VARCHAR(255)
 );
+END
 
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'order_item')
+BEGIN
 CREATE TABLE order_item (
                             id BIGINT AUTO_INCREMENT PRIMARY KEY,
                             order_id BIGINT,
@@ -42,3 +53,4 @@ CREATE TABLE order_item (
                             FOREIGN KEY (order_id) REFERENCES order(id) ON DELETE CASCADE,
                             FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
+END

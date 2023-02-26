@@ -79,12 +79,22 @@
     </p>
 
     <p>
-        <input id="customerNumber" class="w3-input" type="hidden" style="width:90%">
+        <input id="customerNumber" class="w3-input" type="text" style="width:90%" placeholder="Auto generated!" disabled>
+        <label>Customer Number</label>
     </p>
 
     <p>
-        <input id="name" class="w3-input" type="text" style="width:90%" required>
-        <label>Name</label></p>
+        <input id="firstName" class="w3-input" type="text" style="width:90%" required>
+        <label>First name</label></p>
+    <p>
+
+    <p>
+        <input id="lastName" class="w3-input" type="text" style="width:90%">
+        <label>Last name</label></p>
+    <p>
+    <p>
+        <input id="email" class="w3-input" type="email" style="width:90%">
+        <label>Email</label></p>
     <p>
 
     <p>
@@ -96,11 +106,24 @@
     <p>
 
     <p>
-        <input id="phoneNumber" class="w3-input" type="text" style="width:90%" disabled required>
+        <input id="phoneNumber" class="w3-input" type="number" style="width:90%" required>
         <label>Phone Number</label></p>
     <p>
-        <button id="btnSaveCustomer" onclick="saveCustomer()" class="w3-button w3-section w3-teal w3-ripple" disabled>
-            Update Customer
+
+    <p>
+    <select name="categories" id="category">
+        <option value="BEDRIJF">Bedrijf</option>
+        <option value="PERSOON">Persoon</option>
+    </select>
+    <br>
+    <label>Category</label>
+    </p>
+    <p>
+        <button id="btnSaveCustomer" onclick="saveCustomer()" class="w3-button w3-section w3-teal w3-ripple">
+            Create Customer
+        </button>
+        <button id="resetCustomerFields" onclick="clearInputFields()" class="w3-button w3-section w3-teal w3-ripple">
+            Reset
         </button>
     </p>
 

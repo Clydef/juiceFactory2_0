@@ -6,8 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class CustomerDAO {
     private EntityManager entityManager;
@@ -38,6 +38,7 @@ public class CustomerDAO {
 
     public Customer insert(Customer customer) {
         customer.setDateRegistered(LocalDate.now());
+        customer.setCustomerNumber(generateCustomerNumber());
         entityManager.getTransaction().begin();
         entityManager.persist(customer);
         entityManager.getTransaction().commit();
@@ -45,19 +46,21 @@ public class CustomerDAO {
     }
 
     public int updateCustomer(Customer customer) {
-        /*entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("UPDATE Customer c SET c.address = :address, c.name = :name," +
-                "c.district = :district, c.phoneNumber = :phoneNumber where c.customerNumber = :customerNumber");
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("UPDATE Customer c SET c.address = :address, c.firstName = :firstName," +
+                "c.lastName = :lastName, c.category = :category, c.email = :email, c.district = :district, c.phoneNumber = :phoneNumber where c.customerNumber = :customerNumber");
         query.setParameter("customerNumber", customer.getCustomerNumber());
         query.setParameter("address", customer.getAddress());
-        query.setParameter("name", customer.getName());
+        query.setParameter("firstName", customer.getFirstName());
         query.setParameter("district", customer.getDistrict());
         query.setParameter("phoneNumber", customer.getPhoneNumber());
+        query.setParameter("lastName", customer.getLastName());
+        query.setParameter("email", customer.getEmail());
+        query.setParameter("category", customer.getCategory());
         int rowsUpdated = query.executeUpdate();
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
-        return rowsUpdated;*/
-        return 0;
+        return rowsUpdated;
     }
 
     public int delete(Long customerNumber) {
@@ -68,5 +71,15 @@ public class CustomerDAO {
         System.out.println("entities deleted: " + rowsDeleted);
         entityManager.getTransaction().commit();
         return rowsDeleted;
+    }
+
+    public static String generateCustomerNumber() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        sb.append("TS");
+        for (int i = 0; i < 5; i++) {
+            sb.append(random.nextInt(10));
+        }
+        return sb.toString();
     }
 }
