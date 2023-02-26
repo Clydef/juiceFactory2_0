@@ -22,8 +22,6 @@ public class CustomerDAO {
         TypedQuery<Customer> query = entityManager.createQuery(jpql, Customer.class);
         List<Customer> customerList = query.getResultList();
         entityManager.getTransaction().commit();
-        System.out.println("Entity MAnager is open: ");
-        System.out.println(entityManager.isOpen());
         return customerList;
     }
 
@@ -58,7 +56,6 @@ public class CustomerDAO {
         query.setParameter("email", customer.getEmail());
         query.setParameter("category", customer.getCategory());
         int rowsUpdated = query.executeUpdate();
-        System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
         return rowsUpdated;
     }

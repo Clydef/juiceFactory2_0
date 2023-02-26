@@ -1,5 +1,6 @@
 package com.example.juiceFactory2_0.service;
 
+import com.example.juiceFactory2_0.entity.Order;
 import com.example.juiceFactory2_0.entity.PaymentMethod;
 
 public class PaymentContext {
@@ -13,9 +14,9 @@ public class PaymentContext {
     public PaymentContext() {
     }
 
-//    public void usePaymentMethod(Invoice invoice) {
-//        this.paymentStrategy.pay(invoice);
-//    }
+    public void usePaymentMethod(Order order) {
+        this.paymentStrategy.pay(order);
+    }
 
 //    public void getPaymentMethod(Invoice invoice) {
 //        if (invoice.getInvoice_method().contains(Set.of(paymentMethod.getPaymentMethodName()))) {
