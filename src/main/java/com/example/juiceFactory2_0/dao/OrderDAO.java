@@ -17,7 +17,9 @@ public class OrderDAO {
     }
 
     public List<Order> retrieveOrderList() {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         String jpql = "select c from Order c";
         TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
         List<Order> orderList = query.getResultList();
@@ -26,7 +28,9 @@ public class OrderDAO {
     }
 
     public List<Order> findOrderDateByQuarter(LocalDate orderDate) {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         String jpql = "select c from Order c where QUARTER(c.orderDate) =:quarter";
         TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
         List<Order> orderList = query.setParameter("quarter", 1).getResultList();
@@ -43,7 +47,9 @@ public class OrderDAO {
             System.out.println(orderList);
             return orderList;
         } else {
-            entityManager.getTransaction().begin();
+            if(!entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().begin();
+            }
             String jpql = "select new com.example.juiceFactory2_0.dto.OrderCountByYear(count(c.orderDate), c.orderDate) from Order c where YEAR(c.orderDate) =:year group by MONTH(c.orderDate) order by c.orderDate";
             TypedQuery<OrderCountByYear> query = entityManager.createQuery(jpql, OrderCountByYear.class);
             List<OrderCountByYear> orderList = query.setParameter("year", year).getResultList();
@@ -54,17 +60,23 @@ public class OrderDAO {
     }
 
     public Order mostFrequentCustomer() {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         String jpql = "select o from Order o join o.customer c group by c.id order by count(c), c.id";
+//        String jpql = "SELECT o FROM Order o LEFT JOIN o.customer c GROUP BY c.id ORDER BY COUNT(c), c.id";
         TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
         List<Order> order = query.getResultList();
+        if(order.size() == 0) {return null;}
         Order order1 = order.get(order.size()-1);
         entityManager.getTransaction().commit();
         return order1;
     }
 
     public Order findByOrderNumber(String orderNumber) {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         String jpql = "select c from Order c  where c.orderNumber = :orderNumber";
         TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
         Order order = query.setParameter("orderNumber", orderNumber).getSingleResult();
@@ -73,7 +85,9 @@ public class OrderDAO {
     }
 
     public Order insert(Order order) {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         entityManager.persist(order);
         entityManager.getTransaction().commit();
         return order;
@@ -92,7 +106,9 @@ public class OrderDAO {
     }
 
     public int delete(String orderNumber) {
-        entityManager.getTransaction().begin();
+        if(!entityManager.getTransaction().isActive()) {
+            entityManager.getTransaction().begin();
+        }
         Query query = entityManager.createQuery("delete from Order c where c.orderNumber = :orderNumber");
         query.setParameter("orderNumber", orderNumber);
         int rowsDeleted = query.executeUpdate();

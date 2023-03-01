@@ -1,6 +1,8 @@
 package com.example.juiceFactory2_0.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,9 +20,12 @@ public class Order {
     @Column(unique = true)
     private String orderNumber;
 
+//    TODO: Kijken als @JsonIgnore nodig is
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
