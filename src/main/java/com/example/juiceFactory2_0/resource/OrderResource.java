@@ -65,8 +65,9 @@ public class OrderResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<OrderCountByYear> findOrderDateByMonth(OrderYear year) {
-        return orderDAO.findOrderDateByMonth(Integer.parseInt(year.stringyear));
+    public List<Object[]> findOrderDateByMonth(String year) {
+        int yearInt = Integer.parseInt(year);
+        return orderDAO.findOrderDateByMonth(yearInt);
     }
 
     @Path("/findOrderDateByQuarter")

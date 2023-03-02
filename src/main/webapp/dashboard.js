@@ -43,15 +43,16 @@ function getMostFrequentCustomer() {
 
 function yearReport() {
     var e = document.getElementById("details");
-    var value = e.value;
-    console.log(value);
     var text = e.options[e.selectedIndex].text;
-    console.log(text);
-    findOrderDateByMonth(text);
+    // console.log(typeof(text));
+    // console.log(typeof(Number(text)));
+    let year = Number(text);
+    findOrderDateByMonth(year);
 }
 
 function findOrderDateByMonth(year) {
-    let reportRequest = {'stringyear': year}
+    let reportRequest = year;
+    console.log(year);
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST", "http://localhost:9090/juiceFactory2_0/api/order/findOrderDateByMonth", true);
     xhttp.onreadystatechange = function() {
@@ -60,7 +61,7 @@ function findOrderDateByMonth(year) {
             console.log(reportList);
             if (reportList.length !== 0) {
                 document.getElementById("mostFrequentCustomer").innerHTML = '<h4 class="h5 mb-2"><a class="text-capitalize">orderNumber:  ' + reportList.orderNumber + ' </a></h4> ' +
-                    '<h5 class="mb-0 text-primary">orderDate year: ' + reportList.orderDate.year + '</h5> ';
+                    '<h5 class="mb-0 text-primary">orderDate year: ' + reportList.orderDate + '</h5> ';
             } else {
                 document.getElementById("mostFrequentCustomer").innerHTML = "No reports available";
             }

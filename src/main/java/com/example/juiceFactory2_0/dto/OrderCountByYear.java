@@ -3,7 +3,7 @@ package com.example.juiceFactory2_0.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class OrderCountByYear implements Serializable {
+public class OrderCountByYear {
     long count;
     LocalDate localDate;
 

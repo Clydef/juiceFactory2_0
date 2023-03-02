@@ -38,25 +38,16 @@ public class OrderDAO {
         return orderList;
     }
 
-    public List<OrderCountByYear> findOrderDateByMonth(int year) {
-        if (entityManager.getTransaction().isActive()) {
-            String jpql = "select new com.example.juiceFactory2_0.dto.OrderCountByYear(count(c.orderDate), c.orderDate) from Order c where YEAR(c.orderDate) =:year group by MONTH(c.orderDate) order by c.orderDate";
-            TypedQuery<OrderCountByYear> query = entityManager.createQuery(jpql, OrderCountByYear.class);
-            List<OrderCountByYear> orderList = query.setParameter("year", year).getResultList();
-            entityManager.getTransaction().commit();
-            System.out.println(orderList);
-            return orderList;
-        } else {
+    public List<Object[]> findOrderDateByMonth(int year) {
             if(!entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().begin();
             }
-            String jpql = "select new com.example.juiceFactory2_0.dto.OrderCountByYear(count(c.orderDate), c.orderDate) from Order c where YEAR(c.orderDate) =:year group by MONTH(c.orderDate) order by c.orderDate";
-            TypedQuery<OrderCountByYear> query = entityManager.createQuery(jpql, OrderCountByYear.class);
-            List<OrderCountByYear> orderList = query.setParameter("year", year).getResultList();
+        TypedQuery<Object[]> query = entityManager.createQuery("SELECT o, c FROM Order o JOIN o.customer c WHERE YEAR(o.orderDate) = :year", Object[].class);
+        query.setParameter("year", year);
+        List<Object[]> orders = query.getResultList();
             entityManager.getTransaction().commit();
-            System.out.println(orderList);
-            return orderList;
-        }
+            System.out.println(orders);
+            return orders;
     }
 
     public Order mostFrequentCustomer() {
