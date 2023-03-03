@@ -73,7 +73,7 @@ function addItemToCart() {
             return
         }*/
     // }
-    var cartRowContents;
+    var cartRowContents = '';
     for (let i = 0; i < sessionProduct.length; i++) {
         console.log(sessionProduct[i].productName)
 
@@ -83,7 +83,7 @@ function addItemToCart() {
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">${sessionProduct[i].productName}</a></h3>
                         <div class="font-size-sm"><span class="text-muted mr-2">Type:</span>...</div>
-                        <div class="font-size-lg text-primary pt-2">SRD 23</div>
+                        <div class="font-size-lg text-primary pt-2">${sessionProduct[i].productPrice}</div>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">

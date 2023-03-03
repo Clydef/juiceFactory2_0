@@ -76,7 +76,8 @@ function addToCartClicked(event) {
     var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
     var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
     var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
-    var productObject = {'productName': productName, 'productDescription': productDescription};
+    var productPrice = shopItem.getElementsByClassName('mb-0 text-primary')[0].innerText;
+    var productObject = {'productName': productName, 'productDescription': productDescription, 'productPrice': productPrice};
     productArray.push(productObject);
     console.log(productArray);
 

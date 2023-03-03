@@ -59,11 +59,32 @@ function findOrderDateByMonth(year) {
         if (xhttp.readyState > 3 && xhttp.status == 200) {
             let reportList = JSON.parse(this.responseText);
             console.log(reportList);
-            if (reportList.length !== 0) {
-                document.getElementById("mostFrequentCustomer").innerHTML = '<h4 class="h5 mb-2"><a class="text-capitalize">orderNumber:  ' + reportList.orderNumber + ' </a></h4> ' +
-                    '<h5 class="mb-0 text-primary">orderDate year: ' + reportList.orderDate + '</h5> ';
+            /*if (reportList.length !== 0) {
+                document.getElementById("findOrderDateByMonth").innerHTML = '<h4 class="h5 mb-2"><a class="text-capitalize">orderNumber:  ' + reportList[0][0].orderNumber + ' </a></h4> ' +
+                    '<h5 class="mb-0 text-primary">orderDate year: ' + reportList[0][0].orderDate.year + '</h5> ';
             } else {
-                document.getElementById("mostFrequentCustomer").innerHTML = "No reports available";
+                document.getElementById("findOrderDateByMonth").innerHTML = "No reports available";
+            }*/
+            if (reportList.length !== 0) {
+                document.getElementById("findOrderDateByMonth").innerHTML =
+                `<table>
+  <thead>
+    <tr>
+      <th>Order number</th>
+      <th>Order date</th>
+      <th>Total amount</th>
+      <th>Customer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>` + reportList[0][0].orderNumber + `</td>
+      <td>` + reportList[0][0].orderDate.dayOfMonth + `-` + reportList[0][0].orderDate.monthValue + `-` + reportList[0][0].orderDate.year + `</td>
+      <td>` + reportList[0][0].totalAmount + `</td>
+      <td>` + reportList[0][1].firstName + `</td>
+    </tr>
+  </tbody>
+</table>`;
             }
         }
     };
