@@ -9,53 +9,52 @@
     <script src="signup.js"></script>
 </head>
 <body>
-
 <div class="container">
     <div class="title">Customer Registration</div>
     <form action="#">
         <div class="user-details">
             <div class="input-box">
-                <span class="details">Name</span>
-                <input id="name" type="text" placeholder="Enter your name" required>
+                <label>
+                    <span class="details">Full Name</span>
+                    <input type="text" placeholder="E.g.: Borger Breeveld" required>
+                </label>
             </div>
             <div class="input-box">
-                <span class="details">District</span>
-                <input id="district" type="text" placeholder="Enter your district" required>
+                <label>
+                    <span class="details">Email</span>
+                    <input type="email" placeholder="example@juicefactory.com" required>
+                </label>
             </div>
             <div class="input-box">
-                <span class="details">Address</span>
-                <input id="address" type="text" placeholder="Enter your address" required>
+                <label for="phone"><span class="details">Phone Number</span></label><input type="number" id="phone"
+                                                                                           name="phone"
+                                                                                           placeholder="E.g.: 8765432"
+                                                                                           pattern="[0-9]{6,13}"
+                                                                                           required>
             </div>
             <div class="input-box">
-                <span class="details">Phone Number</span>
-                <input id="phoneNumber" type="text" placeholder="Enter your phone number" required>
+                <label><span class="details">Address</span>
+                    <input type="text" placeholder="E.g.: Blakabubastraat 61" required>
+                </label>
             </div>
-<!--            <div class="input-box">-->
-<!--                <span class="details">Password</span>-->
-<!--                <input type="password" placeholder="Enter your password" required>-->
-<!--            </div>-->
             <div class="input-box">
-<!--                <span hidden class="details">Customer Number</span>-->
-                <input hidden id="customerNumber" type="number" placeholder="Enter your customer number">
+                <label><span class="details">District</span>
+                    <input type="text" placeholder="E.g.: Saramacca" required>
+                </label>
             </div>
         </div>
         <div class="gender-details">
             <input type="radio" name="gender" id="dot-1">
             <input type="radio" name="gender" id="dot-2">
-            <input type="radio" name="gender" id="dot-3">
             <span class="gender-title">Gender</span>
             <div class="category">
                 <label for="dot-1">
                     <span class="dot one"></span>
-                    <span class="gender">Male</span>
+                    <span class="gender">Persoon</span>
                 </label>
                 <label for="dot-2">
                     <span class="dot two"></span>
-                    <span class="gender">Female</span>
-                </label>
-                <label for="dot-3">
-                    <span class="dot three"></span>
-                    <span class="gender">Prefer not to say</span>
+                    <span class="gender">Bedrijf</span>
                 </label>
             </div>
         </div>
