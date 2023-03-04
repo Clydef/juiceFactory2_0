@@ -17,11 +17,9 @@ function loadProductList() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let productDataList = JSON.parse(this.responseText);
-            // var cartItems = document.getElementsByClassName('cart-items')[0];
-            // console.log(cartItems);
             console.log("attempt loading...");
             console.log(productDataList);
-            let productList = ' <ul class="w3-ul w3-card-4"> ';
+            let productList = '';
 
             productDataList.reverse();
             console.log(productDataList);
@@ -46,7 +44,6 @@ function loadProductList() {
                     '</div> ';
 
             }
-            productList += "</ul>";
             document.getElementById("productData").innerHTML = productList;
 
             var addCartButtons = document.getElementsByClassName('bg-white p-3 rounded-circle font-weight-600');
