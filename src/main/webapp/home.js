@@ -1,29 +1,19 @@
-// import {addItemToCart, addToCartClicked} from './shopping_cart.js'
-
-// window.sessionStorage
-// window.
-
 var productArray = [];
 
 loadProductList();
 
 function addAllToCart() {
-    console.log(productArray);
     sessionStorage.setItem('sessionProductObject', JSON.stringify(productArray));
 }
 
 function loadProductList() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             let productDataList = JSON.parse(this.responseText);
-            console.log("attempt loading...");
-            console.log(productDataList);
+            productDataList.reverse(); //why tho?
+
             let productList = '';
-
-            productDataList.reverse();
-            console.log(productDataList);
-
             for (let index = 0; index < productDataList.length; index++) {
                 productList +=
                     '<div class="col-sm-6 col-lg-3 mb-2-6"> ' +
@@ -66,21 +56,25 @@ function loadProductList() {
 }*/
 
 function addToCartClicked(event) {
-    // console.log("clicked :)");
     var button = event.target;
-    // console.log(button);
+    if (button.innerText === 'Added to cart!') {return;}
     button.innerText = 'Added to cart!';
     var shopItem = button.parentElement.parentElement.parentElement.parentElement.parentElement;
+
     var productName = shopItem.getElementsByClassName('text-capitalize')[0].innerText;
     var productDescription = shopItem.getElementsByClassName('prod-description')[0].innerText;
     var productPrice = shopItem.getElementsByClassName('mb-0 text-primary')[0].innerText;
-    var productObject = {'productName': productName, 'productDescription': productDescription, 'productPrice': productPrice};
+    const imageElement = shopItem.querySelector('img');
+    const productImage = imageElement.getAttribute('src');
+    var productObject = {
+        'productName': productName,
+        'productDescription': productDescription,
+        'productPrice': productPrice,
+        'productImage': productImage
+    };
+
     productArray.push(productObject);
     console.log(productArray);
-
-    // console.log(productName);
-    // console.log(productDescription);
-    // addItemToCart(productName, productDescription);
 }
 
 
