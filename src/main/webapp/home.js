@@ -41,10 +41,16 @@ function loadProductList() {
                 var button = addCartButtons[i]
                 button.addEventListener('click', addToCartClicked)
             }
+            hideSpinner();
         }
     };
     xhttp.open("GET", "http://localhost:9090/juiceFactory2_0/api/product/list", true);
     xhttp.send();
+}
+
+function hideSpinner() {
+    document.getElementById('spinner')
+        .style.display = 'none';
 }
 
 /*function addItemToCart(productName, productDescription) {

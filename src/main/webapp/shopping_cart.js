@@ -11,7 +11,9 @@ function ready() {
     var removeCartItemButtons = document.getElementsByClassName('btn-outline-danger btn-sm btn-block mb-2')
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i]
-        button.addEventListener('click', removeCartItem);
+        button.addEventListener('click', function (event) {
+            removeCartItem(event, i);
+        });
     }
 
     var quantityInputs = document.getElementsByClassName('form-control form-control-sm');
@@ -21,11 +23,24 @@ function ready() {
     }
 }
 
-function removeCartItem(event) {
+function removeCartItem(event, i) {
     var buttonClicked = event.target;
-    // console.log(buttonClicked.parentElement.parentElement);
+    console.log(buttonClicked.parentElement.parentElement);
+    console.log(i);
     buttonClicked.parentElement.parentElement.remove();
     updateCartTotal();
+    //TODO: Item weghalen van sessionStorage
+
+    // let myArray = JSON.parse(sessionStorage.getItem('sessionProductObject'));
+
+    // let itemToRemove = 'item2';
+    // let indexToRemove = myArray.indexOf(itemToRemove);
+    // if (indexToRemove !== -1) {
+    //     myArray.splice(indexToRemove, 1);
+    // }
+
+// Update the sessionStorage with the updated array
+//     sessionStorage.setItem('sessionProductObject', JSON.stringify(myArray));
 }
 
 function quantityChanged(event) {
@@ -59,37 +74,30 @@ function updateCartTotal() {
 }
 
 function addItemToCart() {
-    console.log(sessionProduct);
-    // console.log(sessionProduct[0].productName);
-    // console.log(sessionProduct[1].productName);
     // var productNameSes = sessionProduct[0].productName;
     var cartRow = document.createElement('div');
-    cartRow.classList.add('row');
     var cartItems = document.getElementsByClassName('cart-items')[0];
     // var cartItemNames = cartItems.getElementsByClassName('product-card-title');
-    // for (let i = 0; i < cartItemNames.length; i++) {
-        /*if (cartItemNames[i].innerText == productNameSes) {
-            alert('Already in cart');
-            return
-        }*/
-    // }
     var cartRowContents = '';
-    for (let i = 0; i < sessionProduct.length; i++) {
-        console.log(sessionProduct[i].productName)
-
-        cartRowContents += `<div class="media d-block d-sm-flex text-center text-sm-left">
-                    <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img
-                            src="https://via.placeholder.com/240x240/eeeeee/000000" alt="Product"></a>
+    if (sessionProduct.length === 0) {
+        cartRowContents += `<p>NO ITEMS IN CART!</p>`;
+    } else {
+        for (let i = 0; i < sessionProduct.length; i++) {
+            cartRowContents +=
+                `<div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
+                <div class="media d-block d-sm-flex text-center text-sm-left">
+                    <a class="cart-item-thumb mx-auto mr-sm-4"><img
+                            src="${sessionProduct[i].productImage}" alt="Product"></a>
                     <div class="media-body pt-3">
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="#">${sessionProduct[i].productName}</a></h3>
-                        <div class="font-size-sm"><span class="text-muted mr-2">Type:</span>...</div>
-                        <div class="font-size-lg text-primary pt-2">${sessionProduct[i].productPrice}</div>
+                        <div class="font-size-sm"><span class="text-muted mr-2"><i>${sessionProduct[i].productDescription}</i></span></div>
+                        <div class="font-size-lg text-primary pt-2">${sessionProduct[i].productPrice} </div><i>p/unit</i>
                     </div>
                 </div>
                 <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-center text-sm-left" style="max-width: 10rem;">
                     <div class="form-group mb-2">
                         <label for="quantity4">Quantity</label>
-                        <input class="form-control form-control-sm" type="number" id="quantity4" value="4" min="1"
+                        <input class="form-control form-control-sm" type="number" id="quantity4" value="1" min="1"
                                max="100">
                     </div>
                     <button class="btn btn-outline-secondary btn-sm btn-block mb-2" type="button">
@@ -113,7 +121,10 @@ function addItemToCart() {
                         </svg>
                         Remove
                     </button>
-                </div>`
+                </div>
+            </div>`;
+            updateCartTotal();
+        }
     }
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
