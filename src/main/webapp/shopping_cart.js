@@ -130,3 +130,39 @@ function addItemToCart() {
     cartItems.append(cartRow)
 }
 
+function SRDConverter() {
+    let amountWithCurrency = document.getElementById("totalAmount").innerHTML;
+    let currency = amountWithCurrency.substring(0,3);
+    if (currency === 'USD') {return;}
+    let amount = amountWithCurrency.substring(4);
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/juiceFactory2_0/api/pattern/SRDConverter", true);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState > 3 && xmlhttp.status === 200) {
+            console.log(JSON.parse(this.responseText));
+            document.getElementById("totalAmount").innerHTML = 'USD ' + JSON.parse(this.responseText);
+        }
+    };
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(amount)
+    ;
+}
+
+function USDConverter() {
+    let amountWithCurrency = document.getElementById("totalAmount").innerHTML;
+    let currency = amountWithCurrency.substring(0,3);
+    if (currency === 'SRD') {return;}
+    let amount = amountWithCurrency.substring(4);
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/juiceFactory2_0/api/pattern/USDConverter", true);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState > 3 && xmlhttp.status === 200) {
+            console.log(JSON.parse(this.responseText));
+            document.getElementById("totalAmount").innerHTML = 'SRD ' + JSON.parse(this.responseText);
+        }
+    };
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(amount)
+    ;
+}
+

@@ -1,14 +1,17 @@
 package com.example.juiceFactory2_0.adapter;
 
-public class SRD implements Currency {
-    private double amount;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
-    public SRD(double amount) {
+public class SRD implements Currency {
+    private BigDecimal amount;
+
+    public SRD(BigDecimal amount) {
         this.amount = amount;
     }
 
     @Override
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 }
