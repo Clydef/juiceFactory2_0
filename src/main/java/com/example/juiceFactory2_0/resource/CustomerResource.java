@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("customer")
 public class CustomerResource {
@@ -47,7 +48,7 @@ public class CustomerResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer getBook(Object customerNumber) {
+    public Customer getCustomer(String customerNumber) {
         return customerDAO.findByCustomerNumber(customerNumber);
     }
 

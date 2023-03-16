@@ -3,6 +3,7 @@ package com.example.juiceFactory2_0.dao;
 import com.example.juiceFactory2_0.entity.Customer;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
@@ -25,11 +26,16 @@ public class CustomerDAO {
         return customerList;
     }
 
-    public Customer findByCustomerNumber(Object customerNumber) {
+    public Customer findByCustomerNumber(String customerNumber) {
         entityManager.getTransaction().begin();
-        String jpql = "select c from Customer c  where c.customerNumber = :customerNumber";
+        String jpql = "select c from Customer c where c.customerNumber = :customerNumber";
         TypedQuery<Customer> query = entityManager.createQuery(jpql, Customer.class);
-        Customer customer = query.setParameter("customerNumber", customerNumber).getSingleResult();
+        Customer customer = null;
+        try {
+            customer = query.setParameter("customerNumber", customerNumber).getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Geen user met aangegeven customernumber");
+        }
         entityManager.getTransaction().commit();
         return customer;
     }

@@ -55,34 +55,34 @@
                 <div class="modal-body">
                     <div class="container1">
 <!--                        <div class="title">Customer Details</div>-->
-                        <form id="customerform" action="#">
+                        <form id="customerform" action="#" onsubmit="confirmOrder()">
                             <div class="user-details">
                                 <div class="input-box">
-                                    <span class="details">Full Name</span>
-                                    <input type="text" placeholder="E.g.: Borger Breeveld" required>
+
+                                    <label class="details">Customer Number <span class="text-danger">*</span>
+                                        <input id="customerNumber" type="text" placeholder="Customer number" required>
+                                    </label>
                                 </div>
                                 <div class="input-box">
-                                    <span class="details">Customer Number*</span>
-                                    <input type="" placeholder="Enter your customer number">
+                                    <label class="details">Enter a delivery date <span class="text-danger">*</span>
+                                    <input type="date" id="deliverydate" required>
+                                    </label>
                                 </div>
                                 <div class="input-box">
-                                    <span class="details">Enter a delivery date:</span>
-                                    <input type="date" id="deliverydate" min="" max="" required>
-                                </div>
-                                <div class="input-box">
-                                    <span class="details">Payment Method</span>
-                                    <select class="form-control custom-select" required="">
-                                        <option value="">Choose your payment method</option>
-                                        <option value="Cash">Cash</option>
-                                        <option value="Mobile Banking">Mobile Banking</option>
+                                    <label class="details">Payment Method <span class="text-danger">*</span>
+                                    <select id="paymentSelect" class="form-control custom-select" required>
+<!--                                        <option value="">Select payment</option>-->
+<!--                                        <option value="Cash">Cash</option>-->
+<!--                                        <option value="Mobile Banking">Mobile Banking</option>-->
                                     </select>
+                                    </label>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button form="customerform" type="submit" class="btn btn-primary">Confirm order</button>
                 </div>
             </div>

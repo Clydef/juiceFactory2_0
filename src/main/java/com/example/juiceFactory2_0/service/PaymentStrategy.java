@@ -1,7 +1,7 @@
 package com.example.juiceFactory2_0.service;
 
-import com.example.juiceFactory2_0.entity.Order;
+import java.math.BigDecimal;
 
 public interface PaymentStrategy {
-    void pay(Order order);
+    String pay(BigDecimal order);
 }

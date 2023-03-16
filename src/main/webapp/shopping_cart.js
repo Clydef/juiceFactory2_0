@@ -1,13 +1,15 @@
 var sessionProduct = JSON.parse(sessionStorage.getItem('sessionProductObject'));
 
-if (document.readyState == 'loading') {
+
+getPaymentMethods();
+if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
-    ready()
 }
 
 function ready() {
     addItemToCart();
+    updateCartTotal();
     var removeCartItemButtons = document.getElementsByClassName('btn-outline-danger btn-sm btn-block mb-2')
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i]
@@ -55,7 +57,6 @@ function quantityChanged(event) {
 }
 
 function updateCartTotal() {
-    // addItemToCart(); //test
     var cartItemContainer = document.getElementsByClassName('cart-items')[0];
     var cartRows = cartItemContainer.getElementsByClassName('d-sm-flex justify-content-between my-4'); // pb-4 border-bottom
     var total = 0;
@@ -65,7 +66,6 @@ function updateCartTotal() {
         var quantityElement = cartRow.getElementsByClassName('form-control form-control-sm')[0];
         var price = parseFloat(priceElement.innerText.replace('SRD ', ''));
         var quantity = quantityElement.value;
-        // console.log('Price * Quantity: ' + price * quantity)
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100;
@@ -164,5 +164,41 @@ function USDConverter() {
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(amount)
     ;
+}
+
+function getPaymentMethods() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let values = JSON.parse(this.responseText)
+            let optionList = document.getElementById('paymentSelect').options;
+            for (let i = 0; i < values.length; i++) {
+                optionList.add(
+                    new Option(values[i], values[i])
+                );
+            }
+        }
+    };
+    xhttp.open("GET", "/juiceFactory2_0/api/pattern/paymentMethods", true);
+    xhttp.send();
+}
+
+function confirmOrder() {
+    let customerNumber = document.getElementById("customerNumber").value;
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/juiceFactory2_0/api/customer/getCustomer", true);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState > 3 && xmlhttp.status === 200) {
+            let data = JSON.parse(this.responseText);
+            console.log(JSON.parse(this.responseText));
+            console.log(data.district);
+            document.getElementById("closeModal").click();
+        } else if (xmlhttp.readyState > 3 && xmlhttp.status === 204) {
+            alert("Geen user met aangegeven customernumber");
+        }
+    };
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(customerNumber);
+
 }
 

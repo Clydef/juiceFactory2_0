@@ -1,7 +1,8 @@
 package com.example.juiceFactory2_0.service;
 
-import com.example.juiceFactory2_0.entity.Order;
 import com.example.juiceFactory2_0.entity.PaymentMethod;
+
+import java.math.BigDecimal;
 
 public class PaymentContext {
     private PaymentStrategy paymentStrategy;
@@ -14,7 +15,7 @@ public class PaymentContext {
     public PaymentContext() {
     }
 
-    public void usePaymentMethod(Order order) {
+    public void usePaymentMethod(BigDecimal order) {
         this.paymentStrategy.pay(order);
     }
 

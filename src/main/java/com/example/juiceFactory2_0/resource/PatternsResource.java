@@ -4,13 +4,13 @@ import com.example.juiceFactory2_0.adapter.SRD;
 import com.example.juiceFactory2_0.adapter.SRDUSDConverter;
 import com.example.juiceFactory2_0.adapter.USD;
 import com.example.juiceFactory2_0.adapter.USDSRDConverter;
+import com.example.juiceFactory2_0.entity.PaymentMethod;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("pattern")
 public class PatternsResource {
@@ -33,5 +33,17 @@ public class PatternsResource {
         USDSRDConverter usdsrdConverter = new USDSRDConverter(new BigDecimal("34.50"));
         USD usd = new USD(new BigDecimal(amount));
         return usdsrdConverter.convert(usd).getAmount();
+    }
+
+    @Path("/paymentMethods")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<PaymentMethod> paymentMethods() {
+        List<PaymentMethod> paymentMethods = new ArrayList<>();
+        paymentMethods.add(PaymentMethod.BANK);
+        paymentMethods.add(PaymentMethod.CASH);
+        paymentMethods.add(PaymentMethod.UNI5PAY);
+        paymentMethods.add(PaymentMethod.MOPÉ);
+        return paymentMethods;
     }
 }

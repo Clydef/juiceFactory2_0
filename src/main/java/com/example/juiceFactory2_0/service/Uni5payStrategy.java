@@ -4,10 +4,9 @@ import com.example.juiceFactory2_0.entity.PaymentMethod;
 
 import java.math.BigDecimal;
 
-public class CashStrategy implements PaymentStrategy {
+public class Uni5payStrategy implements PaymentStrategy {
     @Override
     public String pay(BigDecimal order) {
-        BigDecimal invoiceAmount = order;
-        return "Paid via "+ PaymentMethod.CASH;
+        return "Paid via " + PaymentMethod.UNI5PAY;
     }
 }

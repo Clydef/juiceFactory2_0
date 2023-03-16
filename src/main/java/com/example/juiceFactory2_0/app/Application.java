@@ -2,6 +2,9 @@ package com.example.juiceFactory2_0.app;
 
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.*;
+import com.example.juiceFactory2_0.entity.Customer;
+import com.example.juiceFactory2_0.service.Transport;
+import com.example.juiceFactory2_0.service.TransportFactory;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,14 +35,21 @@ public class Application {
 //        PriceAdapter priceAdapter1 = new PriceAdapter("TS002", 20.75);
 //        priceAdapter1.convertToUSD();
 
-        /*TransportFactory tpf = new TransportFactory();
+        TransportFactory tpf = new TransportFactory();
 
-        Transport tp = tpf.getInstance(customerDAO.findByCustomerNumber(6001L));
+        Customer customer = new Customer();
+        customer.setId(6L);
+        customer.setAddress("789 Market St");
+        customer.setCategory("PERSOON");
+        customer.setCustomerNumber("TS34567");
+        customer.setDateRegistered(LocalDate.now());
+        customer.setDistrict("Nickerie");
+        Transport tp = tpf.getInstance(customer);
         System.out.println(tp.deliver());
 
-        CashStrategy cs = new CashStrategy();
-        cs.pay(invoiceDAO.findByOrderNumber("TS002"));
-        System.out.println(cs);*/
+//        CashStrategy cs = new CashStrategy();
+//        cs.pay(invoiceDAO.findByOrderNumber("TS002"));
+//        System.out.println(cs);
         JPAConfiguration.shutdown();
     }
 

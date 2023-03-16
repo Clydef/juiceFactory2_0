@@ -8,7 +8,7 @@ public class TransportFactory {
 
     public Transport getInstance(Customer customer) {
         if (!customer.getDistrict().isEmpty()) {
-            if ("NICKERIE".equals(customer.getDistrict())) {
+            if ("NICKERIE".equalsIgnoreCase(customer.getDistrict())) {
                 return new Plane();
             } else {
                 return new Bus();
