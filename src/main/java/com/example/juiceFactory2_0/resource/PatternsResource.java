@@ -4,7 +4,9 @@ import com.example.juiceFactory2_0.adapter.SRD;
 import com.example.juiceFactory2_0.adapter.SRDUSDConverter;
 import com.example.juiceFactory2_0.adapter.USD;
 import com.example.juiceFactory2_0.adapter.USDSRDConverter;
+import com.example.juiceFactory2_0.entity.Customer;
 import com.example.juiceFactory2_0.entity.PaymentMethod;
+import com.example.juiceFactory2_0.service.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -45,5 +47,46 @@ public class PatternsResource {
         paymentMethods.add(PaymentMethod.UNI5PAY);
         paymentMethods.add(PaymentMethod.MOPÉ);
         return paymentMethods;
+    }
+
+    @Path("/transport")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String transport(Customer customer) {
+        TransportFactory factory = new TransportFactory();
+        Transport transport = factory.getInstance(customer);
+        String customerName = customer.getFirstName();
+        String paymentMethod = payment(customer.getCategory());
+        String transportMethod = transport.deliver();
+        return orderMessage(customerName, paymentMethod, transportMethod);
+    }
+
+    public String payment(String paymentMethod) {
+        PaymentStrategy paymentStrategy;
+        switch (paymentMethod) {
+            case "CASH":
+                paymentStrategy = new CashStrategy();
+                break;
+            case "BANK":
+                paymentStrategy = new BankStrategy();
+                break;
+            case "MOPÉ":
+                paymentStrategy = new MopeStrategy();
+                break;
+            case "UNI5PAY":
+                paymentStrategy = new Uni5payStrategy();
+                break;
+            default:
+                paymentStrategy = null;
+                break;
+        }
+        PaymentContext paymentContext = new PaymentContext(paymentStrategy);
+
+        return paymentContext.usePaymentMethod(new BigDecimal("0"));
+    }
+
+    public String orderMessage(String customerName, String paymentMethod, String transportMethod) {
+        return "Dear " + customerName + ", the order will be " + paymentMethod + " and " + transportMethod;
     }
 }

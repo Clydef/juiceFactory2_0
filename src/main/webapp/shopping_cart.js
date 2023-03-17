@@ -190,9 +190,11 @@ function confirmOrder() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState > 3 && xmlhttp.status === 200) {
             let data = JSON.parse(this.responseText);
-            console.log(JSON.parse(this.responseText));
             console.log(data.district);
+            let paymentMethod = document.getElementById("paymentSelect").value;
+            data.category = paymentMethod;
             document.getElementById("closeModal").click();
+            getTransport(data);
         } else if (xmlhttp.readyState > 3 && xmlhttp.status === 204) {
             alert("Geen user met aangegeven customernumber");
         }
@@ -202,3 +204,16 @@ function confirmOrder() {
 
 }
 
+function getTransport(customer) {
+    customer.dateRegistered = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "/juiceFactory2_0/api/pattern/transport", true);
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState>3 && xmlhttp.status===200) {
+            console.log(this.responseText);
+            alert(this.responseText);
+        }
+    };
+    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send(JSON.stringify(customer));
+}

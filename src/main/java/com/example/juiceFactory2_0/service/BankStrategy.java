@@ -8,6 +8,6 @@ public class BankStrategy implements PaymentStrategy {
     @Override
     public String pay(BigDecimal order) {
         BigDecimal invoiceAmount = order;
-        return "Paid via Online Banking " + PaymentMethod.BANK;
+        return "Paid via " + PaymentMethod.BANK;
     }
 }

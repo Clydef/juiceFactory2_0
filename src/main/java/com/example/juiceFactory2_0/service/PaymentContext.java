@@ -15,8 +15,8 @@ public class PaymentContext {
     public PaymentContext() {
     }
 
-    public void usePaymentMethod(BigDecimal order) {
-        this.paymentStrategy.pay(order);
+    public String usePaymentMethod(BigDecimal order) {
+        return this.paymentStrategy.pay(order);
     }
 
 //    public void getPaymentMethod(Invoice invoice) {
