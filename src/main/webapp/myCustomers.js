@@ -4,8 +4,9 @@ let customerDataList;
 function loadCustomerList() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
              customerDataList = JSON.parse(this.responseText);
+            console.log(JSON.parse(this.responseText));
             let customerList = ' <ul class="w3-ul w3-card-4"> ';
 
             customerDataList.reverse();
@@ -64,7 +65,7 @@ function updateCustomer()
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("PUT", "/juiceFactory2_0/api/customer/update", true);
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState>3 && xmlhttp.status==200) { loadCustomerList(); clearInputFields();}
+        if (xmlhttp.readyState>3 && xmlhttp.status===200) { loadCustomerList(); clearInputFields();}
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(customer));
@@ -85,7 +86,7 @@ function addCustomer()
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", "/juiceFactory2_0/api/customer/add", true);
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState>3 && xmlhttp.status==200) { loadCustomerList(); clearInputFields();}
+        if (xmlhttp.readyState>3 && xmlhttp.status===200) { loadCustomerList(); clearInputFields();}
     };
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(customer));
@@ -119,10 +120,10 @@ function deleteCustomer(customerNumber)
     var xhttp = new XMLHttpRequest();
     xhttp.open("DELETE", "/juiceFactory2_0/api/customer/remove", true);
     xhttp.onreadystatechange = function() {
-        if (xhttp.readyState>3 && xhttp.status==200) { loadCustomerList(); }
+        if (xhttp.readyState>3 && xhttp.status===200) { loadCustomerList(); }
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(customerNumber));
+    xhttp.send(customerNumber);
 }
 
 function editCustomer(customerNumber)
@@ -130,7 +131,7 @@ function editCustomer(customerNumber)
     for (let customerNumberElement of customerDataList) {
         // console.log("Element: "+ customerNumberElement.customerNumber + " Customer: "+ customerNumber);
         // console.log(customerNumberElement.customerNumber == customerNumber);
-        if (customerNumberElement.customerNumber == customerNumber) {
+        if (customerNumberElement.customerNumber === customerNumber) {
             // document.getElementById("btnSaveCustomer").disabled = false;
             document.getElementById("customerNumber").value = customerNumberElement.customerNumber;
             document.getElementById("firstName").value = customerNumberElement.firstName;
@@ -167,8 +168,8 @@ function validateForm()
     let district = document.getElementById("district").value;
     let phoneNumber = document.getElementById("phoneNumber").value;
 
-    if (firstName == null || firstName == "", address == null || address == "", district == null || district == "",
-        phoneNumber == "" || phoneNumber == null)
+    if (firstName == null || firstName === "", address == null || address === "", district == null || district === "",
+        phoneNumber === "" || phoneNumber == null)
     {
         alert("Please fill in all the fields.");
         pass = false;

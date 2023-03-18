@@ -42,7 +42,7 @@ public class CustomerResource {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public int remove(Long customerNumber) { return customerDAO.delete(customerNumber); }
+    public int remove(String customerNumber) { return customerDAO.delete(customerNumber); }
 
     @Path("/getCustomer")
     @POST

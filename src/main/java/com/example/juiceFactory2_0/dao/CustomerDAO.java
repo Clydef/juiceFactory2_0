@@ -66,7 +66,7 @@ public class CustomerDAO {
         return rowsUpdated;
     }
 
-    public int delete(Long customerNumber) {
+    public int delete(String customerNumber) {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("delete from Customer c where c.customerNumber = :customerNumber");
         query.setParameter("customerNumber", customerNumber);
