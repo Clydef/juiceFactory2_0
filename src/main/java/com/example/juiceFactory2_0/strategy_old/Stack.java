@@ -1,4 +1,4 @@
-package com.example.juiceFactory2_0.adt;
+package com.example.juiceFactory2_0.strategy_old;
 
 public class Stack {
     private final int SIZE = 20;

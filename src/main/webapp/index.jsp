@@ -6,15 +6,12 @@
     <link rel="stylesheet" href="signup.css">
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1>
+    <a href="home.html">
+        <%= "Hello World!" %>
+    </a>
 </h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
 <br>
-<br>
-<a href="aboutMe.html">About Me</a>
 <a href="signup.html">Signup Page</a>
-<br>
-<a href="home.html">Home</a>
 </body>
 </html>

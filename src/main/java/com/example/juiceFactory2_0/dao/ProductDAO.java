@@ -3,9 +3,7 @@ package com.example.juiceFactory2_0.dao;
 import com.example.juiceFactory2_0.entity.Product;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
@@ -24,11 +22,11 @@ public class ProductDAO {
         return productList;
     }
 
-    public Product findProductByProductCode(String productCode) {
+    public Product findProductByProductCode(String code) {
         entityManager.getTransaction().begin();
-        String jpql = "select c from Product c  where c.productCode = :productCode";
+        String jpql = "select c from Product c  where c.code = :code";
         TypedQuery<Product> query = entityManager.createQuery(jpql, Product.class);
-        Product product = query.setParameter("productCode", productCode).getSingleResult();
+        Product product = query.setParameter("code", code).getSingleResult();
         entityManager.getTransaction().commit();
         return product;
     }

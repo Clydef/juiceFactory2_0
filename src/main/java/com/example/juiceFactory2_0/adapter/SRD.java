@@ -1,7 +1,6 @@
 package com.example.juiceFactory2_0.adapter;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 public class SRD implements Currency {
     private BigDecimal amount;

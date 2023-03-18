@@ -3,8 +3,6 @@ package com.example.juiceFactory2_0.resource;
 import com.example.juiceFactory2_0.config.JPAConfiguration;
 import com.example.juiceFactory2_0.dao.ProductDAO;
 import com.example.juiceFactory2_0.entity.Product;
-//import jakarta.ws.rs.*;
-//import jakarta.ws.rs.core.MediaType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -37,12 +35,6 @@ public class ProductResource {
     public int update(Product product) {
         return productDAO.updateProduct(product);
     }
-
-//    @Path("/remove")
-//    @DELETE
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public int remove(Long customerNumber) { return productDAO.(customerNumber); }
 
     @Path("/getProduct")
     @POST

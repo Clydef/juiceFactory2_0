@@ -1,4 +1,4 @@
-package com.example.juiceFactory2_0.adt;
+package com.example.juiceFactory2_0.strategy_old;
 
 public class Queue {
     private final int SIZE = 20;

@@ -1,7 +1,6 @@
 package com.example.juiceFactory2_0.dao;
 
 
-import com.example.juiceFactory2_0.dto.OrderCountByYear;
 import com.example.juiceFactory2_0.entity.Order;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

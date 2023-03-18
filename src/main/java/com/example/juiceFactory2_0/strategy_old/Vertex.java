@@ -1,4 +1,6 @@
-package com.example.juiceFactory2_0.entity;
+package com.example.juiceFactory2_0.strategy_old;
+
+import com.example.juiceFactory2_0.entity.Customer;
 
 public class Vertex {
     public Customer customer;

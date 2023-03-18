@@ -2,7 +2,6 @@ package com.example.juiceFactory2_0.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Customer {
@@ -25,7 +24,6 @@ public class Customer {
 
     private String district;
 
-//    @Temporal(TemporalType.DATE)
     private LocalDate dateRegistered;
 
     private String category;

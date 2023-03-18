@@ -1,10 +1,6 @@
 package com.example.juiceFactory2_0.strategy_old;
 
-import com.example.juiceFactory2_0.adt.Queue;
-import com.example.juiceFactory2_0.adt.Stack;
-import com.example.juiceFactory2_0.entity.Vertex;
 import com.example.juiceFactory2_0.service.DistPar;
-import com.example.juiceFactory2_0.strategy_old.DeliverTimeStrategy;
 
 public abstract class DeliveryTime {
     DeliverTimeStrategy deliverTimeStrategy;
